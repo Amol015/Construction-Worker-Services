@@ -72,7 +72,7 @@ create TABLE dispute_tbl(dispute_id int PRIMARY KEY Auto_INCREMENT,
 DROP TABLE IF EXISTS review_tbl;
 create TABLE review_tbl(review_id int PRIMARY KEY Auto_INCREMENT,
 											customer_id int,
-                                            booking_id int,
+                                          					  	booking_id int,
 											review_comment VARCHAR(50),
 											review_rating double,
                                             FOREIGN KEY (booking_id) REFERENCES booking_tbl(booking_id),
