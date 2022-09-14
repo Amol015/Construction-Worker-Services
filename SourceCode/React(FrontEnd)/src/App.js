@@ -10,6 +10,8 @@ import Feature from "./component/Feature";
 import About from "./component/About";
 import aboutimage from "./images/Frame 19.png";
 import aboutimage1 from "./images/download.png";
+import Login from "./login";
+import Forgotpassword from "./Forgotpassword";
 // import Navbar from "./components/Navbar";
 // import TextForm from "./components/TextForm";
 
@@ -18,14 +20,16 @@ function App() {
   return (
     <div>
 
-      {/* // <Applications></Applications>
-    // <App2></App2>
-    // <Register></Register>
-    // <TextForm></TextForm> */}
-      <Header></Header>
+       {/* <Applications></Applications>
+     <App2></App2>
+     <Register></Register>
+    <TextForm></TextForm> */}
+      {/* <Header></Header>
       <Feature />
       <About image={aboutimage} title='Services at your finger Tips' button='Book your Service'></About>
-      <About image={aboutimage1} title='About Us' button='Know more'></About>
+      <About image={aboutimage1} title='About Us' button='Know more'></About> */}
+    <App2 />
+    
     </div>
   );
 }
