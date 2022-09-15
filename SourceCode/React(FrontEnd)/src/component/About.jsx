@@ -8,14 +8,11 @@ export default function About(props) {
       </div>
       <div className="about-text">
         <h2>{props.title}</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae dicta
-          consequatur doloribus, temporibus fugit dolor iste deserunt
-          perspiciatis dolorem voluptatum natus facere veniam recusandae
-          distinctio. Expedita recusandae velit earum ipsa quam voluptates,
-          natus porro cum?
-        </p>
-        <button>{props.button}</button>
+
+        <h4>{props.heading}</h4>
+        <p>{props.content}</p>
+
+        {/* <button>{props.button}</button> */}
       </div>
     </div>
   );

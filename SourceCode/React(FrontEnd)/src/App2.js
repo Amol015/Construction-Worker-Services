@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./signupUser";
 import Appli from "./App3";
-import Forgotpassword from "./Forgotpassword";
+import Header from "./component/Header";
+import LandingpageRouting from "./LandingpageRouting";
 // import { Provider } from "react-redux";
 // import store from './Store/reducer';
 
@@ -12,8 +13,10 @@ const App2 = () => {
             <BrowserRouter>
                 {/* <Provider store={store}> */}
                 <Routes>
-                    <Route path="/" element={<Appli />} />
-                    <Route index element={<Appli />} />
+                    <Route path="/login" element={<Appli />} />
+                    <Route path="/" element={<LandingpageRouting />} />
+                    <Route index element={<LandingpageRouting />} />
+
                     {/* <Route path="/About" element={<About />} />
                     <Route path="/Contact" element={<Contact />} />
                     <Route path="/AdminLogin" element={<AdminLogin />} />
@@ -22,7 +25,6 @@ const App2 = () => {
                     <Route path="/AdminSignUp" element={<AdminSignUp />} />
                     <Route path="/ForgotPassword" element={<ForgotPassword />} /> */}
                     <Route path="/sign-up" element={<SignUp />} />
-                    <Route path="/forgotpassword" element={<Forgotpassword />} />
                 </Routes>
                 {/* </Provider> */}
             </BrowserRouter>

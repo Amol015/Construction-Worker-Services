@@ -23,24 +23,33 @@ export default function Navbar() {
         <span className="nav-icon"></span>
       </label>
       <ul className="menu">
-        <li>
-          <a href="#">Home</a>
+        {/* <li>
+          <a href="#">
+            <b>Home</b>
+          </a>
         </li>
         <li>
           <a href="#">AboutUs</a>
         </li>
         <li>
           <a href="#">ContactUs</a>
-        </li>
-        <li>
-          <a href="#">User SignIn</a>
-        </li>
-        <li>
-          <a href="#">Service Provider signin</a>
-        </li>
+        </li> */}
+
+        {/* <li>
+          <a href="./login">
+            <b>Service Provider signIn</b>
+          </a>
+        </li> */}
 
         <li>
-          <a href="#">Signup</a>
+          <a href="./sign-up">
+            <b>Register As A Professional</b>
+          </a>
+        </li>
+        <li>
+          <a href="./login">
+            <b>Login/Signup</b>
+          </a>
         </li>
       </ul>
     </nav>

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import Login from './login'
 import SignUp from './signupUser'
-import Forgotpassword from './Forgotpassword';
 import {
     MDBBtn,
     MDBContainer,
@@ -46,8 +45,7 @@ function Appli() {
                             <MDBInput wrapperClass='mb-4' placeholder='Password' id='formControlLg' type='password' size="lg" />
 
                             <MDBBtn className="mb-4 px-5" color='dark' size='lg'>Login</MDBBtn>
-                            <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}> <Link className="nav-link" to={'/forgotpassword'}>Forgot Password?</Link></p>
-
+                            <a className="small text-muted" href="#!">Forgot password?</a>
                             <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}> <Link className="nav-link" to={'/sign-up'}>Don't have an account? Register</Link></p>
 
 
