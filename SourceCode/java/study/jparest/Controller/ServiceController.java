@@ -36,17 +36,34 @@ public class ServiceController {
 		return "ServiceAdded";
 	}
 	
-	@DeleteMapping("/delete/{serviceName}")
+	/*@DeleteMapping("/delete/{serviceName}")
 	public String deleteService(@PathVariable String serviceName )
 	{
 		serrp.deleteByName(serviceName);
 		return "deleted";
+	} */
+	
+	@DeleteMapping("/deleteById/{serviceId}")
+	public String deleteService(@PathVariable int serviceId )
+	{
+		serrp.deleteById(serviceId);
+		return "deleted";
 	}
 	
-	/*
-	 * @PutMapping("/updateService/{id}") public String updateService() {
-	 * 
-	 * }
-	 */
+	  @PutMapping("/updateService/{id}/{serviceName}")
+	  public String updateService(@PathVariable int id ,@PathVariable String serviceName )
+	  {
+		  List<ServiceInfo> list = serrp.findAll();
+		 for(ServiceInfo service :list)
+		 {
+		  if(service.getId()==id)
+		  {
+			  service.setService_name(serviceName);
+		  }
+		 }
+	    serrp.saveAll(list);
+	    return "change done";	 
+	  }
+	 
 
 }
