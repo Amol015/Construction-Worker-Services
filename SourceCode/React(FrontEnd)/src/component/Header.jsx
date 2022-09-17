@@ -8,10 +8,12 @@ export default function Header() {
       <div className="name">
         <h1>
           <span>
-            <b>Construction Worker Services </b>
+            <h2>
+              <b>Six Star Services</b>
+            </h2>{" "}
           </span>{" "}
-          Six Star Services
         </h1>
+
         <p className="details">Book Your Services at your finger Tips</p>
         <a href="#" className="cv-btn">
           Explore More
