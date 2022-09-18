@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.persistence.Id;
 
 @Entity
@@ -19,9 +20,11 @@ public class ServiceInfo {
 	@Column(name="provider_id")
 	private int provider_id;
 	
+	@NotEmpty(message = "Field must not be null")
 	@Column(name="service_name")
 	private String service_name;
 	
+	@NotEmpty(message = "Field must not be null")
 	@Column(name="service_charges")
 	private int service_charges;
 	
