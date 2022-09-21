@@ -158,4 +158,5 @@ public class ServiceProvider {
 				+ city + ", role=" + role + ", isVerified=" + isVerified + "]";
 	}
 	
+	
 }
