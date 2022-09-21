@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,23 +15,26 @@ public class Review {
 	
 	@Id
 	@Column(name="review_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
-	
-	@Column(name="customer_id")
-	private int customerId;
-	
-	@Column(name="booking_id")
-	private int bookingId;
-	
-	@Column(name="provider_id ")
-	private int providerId ;
-
+		
 	@Column(name="review_comment")
 	private String reviewComment;
 	
 	@Column(name="review_rating")
 	private double reviewRating;
+	
+	@OneToOne
+	@JoinColumn(name="customer_id")
+	private Customer customerId;
+	
+	@OneToOne
+	@JoinColumn(name="booking_id")
+	private Booking bookingId;
+	
+	@OneToOne
+	@JoinColumn(name="provider_id ")
+	private ServiceProvider providerId ;
 
 	public int getId() {
 		return Id;
@@ -37,30 +42,6 @@ public class Review {
 
 	public void setId(int id) {
 		Id = id;
-	}
-
-	public int getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-
-	public int getBookingId() {
-		return bookingId;
-	}
-
-	public void setBookingId(int bookingId) {
-		this.bookingId = bookingId;
-	}
-
-	public int getProviderId() {
-		return providerId;
-	}
-
-	public void setProviderId(int providerId) {
-		this.providerId = providerId;
 	}
 
 	public String getReviewComment() {
@@ -79,21 +60,52 @@ public class Review {
 		this.reviewRating = reviewRating;
 	}
 
-	public Review(int id, int customerId, int bookingId, int providerId, String reviewComment, double reviewRating) {
+	public Customer getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Customer customerId) {
+		this.customerId = customerId;
+	}
+
+	public Booking getBookingId() {
+		return bookingId;
+	}
+
+	public void setBookingId(Booking bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	public ServiceProvider getProviderId() {
+		return providerId;
+	}
+
+	public void setProviderId(ServiceProvider providerId) {
+		this.providerId = providerId;
+	}
+
+	public Review(int id, String reviewComment, double reviewRating, Customer customerId, Booking bookingId,
+			ServiceProvider providerId) {
 		super();
 		Id = id;
+		this.reviewComment = reviewComment;
+		this.reviewRating = reviewRating;
 		this.customerId = customerId;
 		this.bookingId = bookingId;
 		this.providerId = providerId;
-		this.reviewComment = reviewComment;
-		this.reviewRating = reviewRating;
 	}
 
 	public Review() {
 		super();
 	}
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "Review [Id=" + Id + ", reviewComment=" + reviewComment + ", reviewRating=" + reviewRating
+				+ ", customerId=" + customerId + ", bookingId=" + bookingId + ", providerId=" + providerId + "]";
+	}
+	
+	
+	
 }
+
