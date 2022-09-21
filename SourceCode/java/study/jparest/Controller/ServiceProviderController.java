@@ -98,7 +98,7 @@ public class ServiceProviderController {
 			return "deleted";
 	  }  
 	  
-	/*	@PostMapping("/login/{email}/{pwd}")
+	/*@PostMapping("/login/{email}/{pwd}")
 		public ServiceProvider checkLogin(@PathVariable String email,@PathVariable String pwd)
 		{
 			return ser.checkLoginCustomer(email, pwd);
