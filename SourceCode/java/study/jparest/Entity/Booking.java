@@ -1,55 +1,146 @@
 package study.jparest.Entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="booking_tbl")
 public class Booking {
-	
+
 	@Id
 	@Column(name="booking_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	
-	@Column(name="provider_id")
-	private int provider_id;
-	
-	@Column(name="customer_id")
-	private int customer_id;
-	
-	@Column(name="service_id")
-	private int service_id;
-	
+	@ManyToOne
+	@JoinColumn(name="provider_id", nullable=false)
+	private ServiceProvider serviceProvider;
+
+	@ManyToOne
+	@JoinColumn(name="customer_id", nullable=false)
+	private Customer customer;
+
+	@OneToOne
+	@JoinColumn(name="service_id", nullable=false)
+	private ServiceInfo serviceInfo;
+
+	@OneToMany(mappedBy = "booking")
+	private List<Review> review;
+
 	@Column(name="service_date")
 	private Date service_date;
-	
+
 	@Column(name="service_time")
 	private String service_time;
-	
+
 	@Column(name="booking_date")
 	private Date booking_date;
-	
+
 	@Column(name=" booking_status")
 	private boolean  booking_status;
-	
+
 	@Column(name="discount")
 	private double discount;
-	
+
 	@Column(name="total_amount")
 	private double total_amount;
-	
+
 	@Column(name="service_address")
 	private String address;
-	
+
 	@Column(name="service_contact_person")
 	private long service_contact_person;
+
+	@Column
+	private String morningSlot; //morning,evening,afternoon,
+	
+	@Column
+	private String eveningSlot;
+	
+	@Column
+	private String afternoonSlot;
+				
+	public Booking() {
+		super();
+	}
+
+	public Booking(int id, Date service_date, String service_time, 
+			Date booking_date, boolean booking_status,
+			double discount, double total_amount,
+			String address, long service_contact_person,
+			ServiceProvider serviceProvider, Customer customer, 
+			ServiceInfo serviceInfo, List<Review> review) {
+		super();
+		Id = id;
+		this.service_date = service_date;
+		this.service_time = service_time;
+		this.booking_date = booking_date;
+		this.booking_status = booking_status;
+		this.discount = discount;
+		this.total_amount = total_amount;
+		this.address = address;
+		this.service_contact_person = service_contact_person;
+		this.serviceProvider = serviceProvider;
+		this.customer = customer;
+		this.serviceInfo = serviceInfo;
+		this.review = review;
+	}
+
+	public Booking(int id,ServiceProvider serviceProvider, Customer customer, ServiceInfo serviceInfo, 
+			Date service_date, String service_time, Date booking_date, boolean booking_status,
+			double discount, double total_amount, String address, long service_contact_person
+			) {
+		super();
+		Id = id;
+		this.service_date = service_date;
+		this.service_time = service_time;
+		this.booking_date = booking_date;
+		this.booking_status = booking_status;
+		this.discount = discount;
+		this.total_amount = total_amount;
+		this.address = address;
+		this.service_contact_person = service_contact_person;
+		this.serviceProvider = serviceProvider;
+		this.customer = customer;
+		this.serviceInfo = serviceInfo;
+	}		
+
+
+	public Booking(int id, Date service_date, String service_time, Date booking_date, boolean booking_status,
+			double discount, double total_amount, String address, long service_contact_person, String morningSlot,
+			 String afternoonSlot,String eveningSlot, ServiceProvider serviceProvider, Customer customer,
+			ServiceInfo serviceInfo, List<Review> review) {
+		super();
+		Id = id;
+		this.service_date = service_date;
+		this.service_time = service_time;
+		this.booking_date = booking_date;
+		this.booking_status = booking_status;
+		this.discount = discount;
+		this.total_amount = total_amount;
+		this.address = address;
+		this.service_contact_person = service_contact_person;
+		this.morningSlot = morningSlot;
+		this.eveningSlot = eveningSlot;
+		this.afternoonSlot = afternoonSlot;
+		this.serviceProvider = serviceProvider;
+		this.customer = customer;
+		this.serviceInfo = serviceInfo;
+		this.review = review;
+	}
+
 
 	public int getId() {
 		return Id;
@@ -59,28 +150,29 @@ public class Booking {
 		Id = id;
 	}
 
-	public int getProvider_id() {
-		return provider_id;
+	
+	public String getMorningSlot() {
+		return morningSlot;
 	}
 
-	public void setProvider_id(int provider_id) {
-		this.provider_id = provider_id;
+	public void setMorningSlot(String morningSlot) {
+		this.morningSlot = morningSlot;
 	}
 
-	public int getCustomer_id() {
-		return customer_id;
+	public String getEveningSlot() {
+		return eveningSlot;
 	}
 
-	public void setCustomer_id(int customer_id) {
-		this.customer_id = customer_id;
+	public void setEveningSlot(String eveningSlot) {
+		this.eveningSlot = eveningSlot;
 	}
 
-	public int getService_id() {
-		return service_id;
+	public String getAfternoonSlot() {
+		return afternoonSlot;
 	}
 
-	public void setService_id(int service_id) {
-		this.service_id = service_id;
+	public void setAfternoonSlot(String afternoonSlot) {
+		this.afternoonSlot = afternoonSlot;
 	}
 
 	public Date getService_date() {
@@ -147,27 +239,35 @@ public class Booking {
 		this.service_contact_person = service_contact_person;
 	}
 
-	public Booking(int id, int provider_id, int customer_id, int service_id, Date service_date, String service_time,
-			Date booking_date, boolean booking_status, double discount, double total_amount, String address,
-			long service_contact_person) {
-		super();
-		Id = id;
-		this.provider_id = provider_id;
-		this.customer_id = customer_id;
-		this.service_id = service_id;
-		this.service_date = service_date;
-		this.service_time = service_time;
-		this.booking_date = booking_date;
-		this.booking_status = booking_status;
-		this.discount = discount;
-		this.total_amount = total_amount;
-		this.address = address;
-		this.service_contact_person = service_contact_person;
+	public ServiceProvider getServiceProvider() {
+		return serviceProvider;
 	}
 
-	public Booking() {
-		super();
+	public void setServiceProvider(ServiceProvider serviceProvider) {
+		this.serviceProvider = serviceProvider;
 	}
-	
-	
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public ServiceInfo getServiceInfo() {
+		return serviceInfo;
+	}
+
+	public void setServiceInfo(ServiceInfo serviceInfo) {
+		this.serviceInfo = serviceInfo;
+	}
+
+	public List<Review> getReview() {
+		return review;
+	}
+
+	public void setReview(List<Review> review) {
+		this.review = review;
+	}			
 }

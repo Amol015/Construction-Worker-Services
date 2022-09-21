@@ -2,14 +2,14 @@ create database cws;
 use cws;
 DROP TABLE IF EXISTS service_provider_info_tbl;
 create TABLE service_provider_info_tbl(provider_id int PRIMARY KEY Auto_INCREMENT,
-											provider_firstname varchar(20),
-											provider_lastname VARCHAR(20),
-											provider_mobile bigint(12),
-											provider_username VARCHAR(30),
-											provider_password varbinary(30),
-											provider_email_id VARCHAR(50),
-											provider_city varchar(50),
-											provider_is_verified BOOLEAN);
+									provider_firstname varchar(20),
+									provider_lastname VARCHAR(20),
+									provider_mobile bigint(12),
+									provider_username VARCHAR(30),
+									provider_password varbinary(30),
+									provider_email_id VARCHAR(50),
+									provider_city varchar(50),
+									provider_is_verified BOOLEAN);
 -- --show tables;
 -- --desc  service_provider_info_tbl;
 -- ------------------------------------------------------------------

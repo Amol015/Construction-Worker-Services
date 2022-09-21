@@ -3,6 +3,7 @@ package study.jparest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import study.jparest.Entity.Review;
 import study.jparest.repository.ReviewRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("cws/Review")
 public class ReviewController {
@@ -30,8 +32,9 @@ public class ReviewController {
 	@PostMapping("/addReview")
 	public String addReview(@RequestBody Review r)
 	{
-		Review rev = new Review(r.getId(),r.getCustomerId(),r.getBookingId(),
-				r.getProviderId(),r.getReviewComment(),r.getReviewRating());
+		Review rev = new Review(r.getId(),r.getBooking(),
+				r.getCustomer(),r.getServiceProvider(),
+				r.getReviewComment(),r.getReviewRating());
 		reviewrepo.save(rev);
 		return "review Added";
 	}
