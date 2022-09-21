@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,10 +20,6 @@ public class Dispute {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int Id;
 	
-	@Column(name="booking_id")
-	private int bookingId;
-	
-
 	@Column(name="dispute_info")
 	private String disputeInfo;
 	
@@ -35,6 +33,31 @@ public class Dispute {
 
 	@Column(name="dispute_status")
 	private String disputeStatus;
+	
+	@OneToOne
+	@JoinColumn(name="booking_id")
+	private Booking bookingId;
+	
+
+	public Dispute(int id, String disputeInfo, Date raiseDate, Date resolveDate, String disputeStatus,
+			Booking bookingId) {
+		super();
+		Id = id;
+		this.disputeInfo = disputeInfo;
+		this.raiseDate = raiseDate;
+		this.resolveDate = resolveDate;
+		this.disputeStatus = disputeStatus;
+		this.bookingId = bookingId;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "Dispute [Id=" + Id + ", disputeInfo=" + disputeInfo + ", raiseDate=" + raiseDate + ", resolveDate="
+				+ resolveDate + ", disputeStatus=" + disputeStatus + ", bookingId=" + bookingId + "]";
+	}
+
 
 
 	public int getId() {
@@ -47,66 +70,55 @@ public class Dispute {
 	}
 
 
-	public int getBooking_id() {
-		return bookingId;
-	}
-
-
-	public void setBooking_id(int booking_id) {
-		this.bookingId = booking_id;
-	}
-
-
-	public String getDispute_info() {
+	public String getDisputeInfo() {
 		return disputeInfo;
 	}
 
 
-	public void setDispute_info(String dispute_info) {
-		this.disputeInfo = dispute_info;
+	public void setDisputeInfo(String disputeInfo) {
+		this.disputeInfo = disputeInfo;
 	}
 
 
-	public Date getRaise_date() {
+	public Date getRaiseDate() {
 		return raiseDate;
 	}
 
 
-	public void setRaise_date(Date raise_date) {
-		this.raiseDate = raise_date;
+	public void setRaiseDate(Date raiseDate) {
+		this.raiseDate = raiseDate;
 	}
 
 
-	public Date getResolve_date() {
+	public Date getResolveDate() {
 		return resolveDate;
 	}
 
 
-	public void setResolve_date(Date resolve_date) {
-		this.resolveDate = resolve_date;
+	public void setResolveDate(Date resolveDate) {
+		this.resolveDate = resolveDate;
 	}
 
 
-	public String getDispute_status() {
+	public String getDisputeStatus() {
 		return disputeStatus;
 	}
 
 
-	public void setDispute_status(String dispute_status) {
-		this.disputeStatus = dispute_status;
+	public void setDisputeStatus(String disputeStatus) {
+		this.disputeStatus = disputeStatus;
 	}
 
 
-	public Dispute(int id, int booking_id, String dispute_info, Date raise_date, Date resolve_date,
-			String dispute_status) {
-		super();
-		Id = id;
-		this.bookingId = booking_id;
-		this.disputeInfo = dispute_info;
-		this.raiseDate = raise_date;
-		this.resolveDate = resolve_date;
-		this.disputeStatus = dispute_status;
+	public Booking getBookingId() {
+		return bookingId;
 	}
+
+
+	public void setBookingId(Booking bookingId) {
+		this.bookingId = bookingId;
+	}
+
 
 	public Dispute() {
 		super();
