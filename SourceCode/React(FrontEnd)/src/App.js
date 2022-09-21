@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Appli from "./App3";
+import LoginCustomer from "./LoginUser";
 import { Route, Router } from "react-router";
 import Applications from "./App4";
-import App2 from "./App2";
+import App2 from "./RoutingComponents";
 import App7 from "./App7";
 
 

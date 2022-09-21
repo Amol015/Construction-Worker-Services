@@ -10,7 +10,7 @@ export default function Feature() {
     <div id="features">
       <div className="a-container">
         <FeatureBox image={featureimage} title="Plumber"></FeatureBox>
-        <FeatureBox image={featureimage1} title="Electrcian"></FeatureBox>
+        <FeatureBox image={featureimage1} title="Electrician"></FeatureBox>
         <FeatureBox
           image={featureimage2}
           title="Interior Designer"
