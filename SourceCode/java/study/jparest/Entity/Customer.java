@@ -127,6 +127,14 @@ public class Customer {
 	public Customer() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile
+				+ ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", address=" + address
+				+ "]";
+	}
+	
 	
 	
 }
