@@ -31,11 +31,26 @@ public class ServiceController {
 	@PostMapping("/addService")
 	public String addService(@RequestBody ServiceInfo se)
 	{
-		ServiceInfo ser = new ServiceInfo(se.getId(),se.getProvider_id(),se.getService_name(),se.getService_charges(),se.getProvider_time(),se.getNumberof_service_perday());
+		ServiceInfo ser = new ServiceInfo(se.getId(),se.getServiceName(),se.getServiceCharges(),se.getProviderTime(),se.getNumberofServicePerDay(),se.getProviderId());
 		serrp.save(ser);
 		return "ServiceAdded";
 	}
 	
+	  @PutMapping("/updateService/{id}/{serviceName}")
+	  public String updateService(@PathVariable int id ,@PathVariable String serviceName )
+	  {
+		  List<ServiceInfo> list = serrp.findAll();
+		 for(ServiceInfo service :list)
+		 {
+		  if(service.getId()==id)
+		  {
+			  service.setServiceName(serviceName);
+		  }
+		 }
+	    serrp.saveAll(list);
+	    return "change done";	 
+	  }
+	 
 	/*@DeleteMapping("/delete/{serviceName}")
 	public String deleteService(@PathVariable String serviceName )
 	{
@@ -50,20 +65,6 @@ public class ServiceController {
 		return "deleted";
 	}
 	
-	  @PutMapping("/updateService/{id}/{serviceName}")
-	  public String updateService(@PathVariable int id ,@PathVariable String serviceName )
-	  {
-		  List<ServiceInfo> list = serrp.findAll();
-		 for(ServiceInfo service :list)
-		 {
-		  if(service.getId()==id)
-		  {
-			  service.setService_name(serviceName);
-		  }
-		 }
-	    serrp.saveAll(list);
-	    return "change done";	 
-	  }
-	 
+	
 
 }
