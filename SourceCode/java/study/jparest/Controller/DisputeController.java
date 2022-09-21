@@ -32,7 +32,7 @@ public class DisputeController {
 	@PostMapping("/generateDispute")
 	public String generateDispute(@RequestBody Dispute d)
 	{
-		Dispute d1 = new Dispute(d.getId(),d.getBooking_id(),d.getDispute_info(),d.getRaise_date(),d.getResolve_date(),d.getDispute_status());
+		Dispute d1 = new Dispute(d.getId(),d.getDisputeInfo(),d.getRaiseDate(),d.getResolveDate(),d.getDisputeStatus(),d.getBookingId());
 		disputerepo.save(d1);
 		return "dispute generated";
 	}
@@ -45,7 +45,7 @@ public class DisputeController {
 		{
 			if(d.getId()==id)
 			{
-				d.setDispute_status(dispute_status);
+				d.setDisputeStatus(dispute_status);
 			}
 		}
 		disputerepo.saveAll(list);
