@@ -30,8 +30,7 @@ public class ReviewController {
 	@PostMapping("/addReview")
 	public String addReview(@RequestBody Review r)
 	{
-		Review rev = new Review(r.getId(),r.getCustomerId(),r.getBookingId(),
-				r.getProviderId(),r.getReviewComment(),r.getReviewRating());
+		Review rev = new Review(r.getId(),r.getReviewComment(),r.getReviewRating(),r.getCustomerId(),r.getBookingId(),r.getProviderId());
 		reviewrepo.save(rev);
 		return "review Added";
 	}
