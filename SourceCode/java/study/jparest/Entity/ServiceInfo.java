@@ -1,6 +1,6 @@
 package study.jparest.Entity;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,25 +14,26 @@ public class ServiceInfo {
 	
 	@Id
 	@Column(name="service_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
-	
-	@Column(name="provider_id")
-	private int provider_id;
 	
 	@NotEmpty(message = "Field must not be null")
 	@Column(name="service_name")
-	private String service_name;
+	private String serviceName;
 	
 	@NotEmpty(message = "Field must not be null")
 	@Column(name="service_charges")
-	private int service_charges;
+	private int serviceCharges;
 	
 	@Column(name="provider_time")
-	private String provider_time;
+	private String providerTime;
 
-	@Column(name="numberof_service_perday")
-	private double numberof_service_perday;
+	@Column(name="numberof_service_per_day")
+	private double numberofServicePerDay;
+	
+	@OneToOne
+	@JoinColumn(name="provider_id")
+	private ServiceProvider providerId;
 
 	public int getId() {
 		return Id;
@@ -42,58 +43,69 @@ public class ServiceInfo {
 		Id = id;
 	}
 
-	public int getProvider_id() {
-		return provider_id;
+	public String getServiceName() {
+		return serviceName;
 	}
 
-	public void setProvider_id(int provider_id) {
-		this.provider_id = provider_id;
+	public void setServiceName(String serviceName) {
+		this.serviceName = serviceName;
 	}
 
-	public String getService_name() {
-		return service_name;
+	public int getServiceCharges() {
+		return serviceCharges;
 	}
 
-	public void setService_name(String service_name) {
-		this.service_name = service_name;
+	public void setServiceCharges(int serviceCharges) {
+		this.serviceCharges = serviceCharges;
 	}
 
-	public int getService_charges() {
-		return service_charges;
+	public String getProviderTime() {
+		return providerTime;
 	}
 
-	public void setService_charges(int service_charges) {
-		this.service_charges = service_charges;
+	public void setProviderTime(String providerTime) {
+		this.providerTime = providerTime;
 	}
 
-	public String getProvider_time() {
-		return provider_time;
+	public double getNumberofServicePerDay() {
+		return numberofServicePerDay;
 	}
 
-	public void setProvider_time(String provider_time) {
-		this.provider_time = provider_time;
+	public void setNumberofServicePerDay(double numberofServicePerDay) {
+		this.numberofServicePerDay = numberofServicePerDay;
 	}
 
-	public double getNumberof_service_perday() {
-		return numberof_service_perday;
+	public ServiceProvider getProviderId() {
+		return providerId;
 	}
 
-	public void setNumberof_service_perday(double numberof_service_perday) {
-		this.numberof_service_perday = numberof_service_perday;
+	public void setProviderId(ServiceProvider providerId) {
+		this.providerId = providerId;
 	}
 
-	public ServiceInfo(int id, int provider_id, String service_name, int service_charges, String provider_time,
-			double numberof_service_perday) {
+	public ServiceInfo(int id, @NotEmpty(message = "Field must not be null") String serviceName,
+			@NotEmpty(message = "Field must not be null") int serviceCharges, String providerTime,
+			double numberofServicePerDay, ServiceProvider providerId) {
 		super();
 		Id = id;
-		this.provider_id = provider_id;
-		this.service_name = service_name;
-		this.service_charges = service_charges;
-		this.provider_time = provider_time;
-		this.numberof_service_perday = numberof_service_perday;
+		this.serviceName = serviceName;
+		this.serviceCharges = serviceCharges;
+		this.providerTime = providerTime;
+		this.numberofServicePerDay = numberofServicePerDay;
+		this.providerId = providerId;
 	}
 
 	public ServiceInfo() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "ServiceInfo [Id=" + Id + ", serviceName=" + serviceName + ", serviceCharges=" + serviceCharges
+				+ ", providerTime=" + providerTime + ", numberofServicePerDay=" + numberofServicePerDay
+				+ ", providerId=" + providerId + "]";
+	}
+
+	
+	
 }
