@@ -17,7 +17,7 @@ public class ServiceProvider {
 	
 	@Id
 	@Column(name = "provider_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@NotEmpty(message = "Field must not be null")
@@ -58,6 +58,7 @@ public class ServiceProvider {
 	
 	@Column(name="provider_is_verified")
 	private boolean isVerified;
+	
 
 	public ServiceProvider(int id, String firstName, String lastName, long mobile, String userName, String password,
 			String emailId, String city, String role, boolean isVerified) {
@@ -149,10 +150,12 @@ public class ServiceProvider {
 	public void setVerified(boolean isVerified) {
 		this.isVerified = isVerified;
 	}
-	
-	
-	
-	
 
+	@Override
+	public String toString() {
+		return "ServiceProvider [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mobile="
+				+ mobile + ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", city="
+				+ city + ", role=" + role + ", isVerified=" + isVerified + "]";
+	}
 	
 }
