@@ -29,7 +29,7 @@ public class BookingController {
 		return br.findAll();
 	}
 
-	@PostMapping("/BookService")
+/*	@PostMapping("/BookService")
 	public String BookService(@RequestBody Booking b1)
 	{
 		Booking b = new Booking(b1.getId(),b1.getProvider_id(),b1.getCustomer_id(),b1.getService_id(),
@@ -37,6 +37,18 @@ public class BookingController {
 				b1.getDiscount(),b1.getTotal_amount(),b1.getAddress(),b1.getService_contact_person());
 		br.save(b);
 		return "Service Added";
+	} */
+	
+	@PostMapping("/BookService")
+	public String BookService(@RequestBody Booking b1)
+	{
+		Booking b = new Booking(b1.getId(), b1.getServiceDate(), b1.getServiceTime(),
+				b1.getBookingDate(),b1.isBookingStatus(), b1.getDiscount(),
+				b1.getTotalAmount(),b1.getAddress(),b1.getServicecontactNo(),
+				b1.getProviderId(),b1.getCustomerId(),b1.getServiceId());
+		br.save(b);
+		return "Service Booked";
+		
 	}
 	
 	@PutMapping("/updateBook/{id}/{bookingStatus}")
@@ -47,7 +59,7 @@ public class BookingController {
 		{
 			if(book.getId()==id)
 			{
-				book.setBooking_status(bookingStatus);
+				book.setBookingStatus(bookingStatus);
 			}
 		}
 		br.saveAll(booklist);
