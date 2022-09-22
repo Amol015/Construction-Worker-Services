@@ -16,7 +16,7 @@ import study.jparest.repository.CustomerRepository;
 import study.jparest.repository.ServiceProviderRepository;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/cws1")
 public class CustomerController {
@@ -38,15 +38,15 @@ public class CustomerController {
 		return "customer inserted";
 	}
 	
-	@PostMapping("/login/{emailId}/{password}")
-	  public Customer Login(@PathVariable String emailId, @PathVariable String password)
+	@PostMapping("/login/{userName}/{password}")
+	  public String Login(@PathVariable String userName, @PathVariable String password)
 	  {
-		Customer sp1 = cus.checkLogin(emailId,password);
+		Customer sp1 = cus.checkLogin(userName,password);
 		if(sp1!= null)
 		{
-			return sp1;
+			return "pass";
 		}
-		return null;	  
+		return "fail";	  
 	  }
 	
 	 @PutMapping("/changePass/{email}/{oldpwd}/{newpwd}")
