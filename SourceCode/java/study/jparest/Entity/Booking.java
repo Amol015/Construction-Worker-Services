@@ -1,140 +1,126 @@
 package study.jparest.Entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="customer_info_tbl")
-public class Customer {
-
+@Table(name="dispute_tbl")
+public class Dispute {
+	
 	@Id
-	@Column(name="customer_id")
+	@Column(name="dispute_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int Id;
 	
-	@NotEmpty(message = "Field must not be null")
-	@Column(name="customer_firstname")
-	private String firstName;
+	@Column(name="dispute_info")
+	private String disputeInfo;
 	
+
+	@Column(name="raise_date")
+	private Date raiseDate;
+
+	@Column(name="resolve_date")
+	private Date resolveDate;
 	
-	@Column(name="customer_lastname")
-	private String lastName;
+
+	@Column(name="dispute_status")
+	private String disputeStatus;
 	
-	@Column(name="customer_mobile")
-	@Pattern(regexp = "^$|[0-9]{10}",message = "Please input proper format")
-	private long mobile;
+	@OneToOne
+	@JoinColumn(name="booking_id")
+	private Booking bookingId;
 	
-	@NotEmpty(message = "Field must not be null")
-	@Column(name="customer_username")
-	private String userName;
+
+	public Dispute(int id, String disputeInfo, Date raiseDate, Date resolveDate, String disputeStatus,
+			Booking bookingId) {
+		super();
+		Id = id;
+		this.disputeInfo = disputeInfo;
+		this.raiseDate = raiseDate;
+		this.resolveDate = resolveDate;
+		this.disputeStatus = disputeStatus;
+		this.bookingId = bookingId;
+	}
+
 	
-	@Size(min = 4,max = 10,message = "Password must be more than 4 and less than 10 charcters")
-	@Column(name="customer_password")
-	private String password;
-	
-	@Column(unique = true)
-	@Email(message = "Please input proper format")
-	private String emailId;
-	
-	@Column(name="customer_address")
-	private String address;
+
+	@Override
+	public String toString() {
+		return "Dispute [Id=" + Id + ", disputeInfo=" + disputeInfo + ", raiseDate=" + raiseDate + ", resolveDate="
+				+ resolveDate + ", disputeStatus=" + disputeStatus + ", bookingId=" + bookingId + "]";
+	}
+
+
 
 	public int getId() {
 		return Id;
 	}
 
+
 	public void setId(int id) {
 		Id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+
+	public String getDisputeInfo() {
+		return disputeInfo;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	public void setDisputeInfo(String disputeInfo) {
+		this.disputeInfo = disputeInfo;
 	}
 
-	public String getLastName() {
-		return lastName;
+
+	public Date getRaiseDate() {
+		return raiseDate;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public void setRaiseDate(Date raiseDate) {
+		this.raiseDate = raiseDate;
 	}
 
-	public long getMobile() {
-		return mobile;
+
+	public Date getResolveDate() {
+		return resolveDate;
 	}
 
-	public void setMobile(long mobile) {
-		this.mobile = mobile;
+
+	public void setResolveDate(Date resolveDate) {
+		this.resolveDate = resolveDate;
 	}
 
-	public String getUserName() {
-		return userName;
+
+	public String getDisputeStatus() {
+		return disputeStatus;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public void setDisputeStatus(String disputeStatus) {
+		this.disputeStatus = disputeStatus;
 	}
 
-	public String getPassword() {
-		return password;
+
+	public Booking getBookingId() {
+		return bookingId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setBookingId(Booking bookingId) {
+		this.bookingId = bookingId;
 	}
 
-	public String getEmailId() {
-		return emailId;
-	}
 
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Customer(int id, String firstName, String lastName, long mobile, String userName, String password,
-			String emailId, String address) {
-		super();
-		Id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.mobile = mobile;
-		this.userName = userName;
-		this.password = password;
-		this.emailId = emailId;
-		this.address = address;
-	}
-
-	public Customer() {
+	public Dispute() {
 		super();
 	}
-
-	@Override
-	public String toString() {
-		return "Customer [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile
-				+ ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", address=" + address
-				+ "]";
-	}
-	
-	
-	
 }
