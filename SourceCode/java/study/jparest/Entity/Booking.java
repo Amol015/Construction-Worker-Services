@@ -1,111 +1,161 @@
 package study.jparest.Entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="service_info_tbl")
-public class ServiceInfo {
+@Table(name="service_provider_info_tbl")
+public class ServiceProvider {
 	
 	@Id
-	@Column(name="service_id")
+	@Column(name = "provider_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	
 	@NotEmpty(message = "Field must not be null")
-	@Column(name="service_name")
-	private String serviceName;
+	@Column(name="provider_firstname")
+	private String firstName;
 	
-	@NotEmpty(message = "Field must not be null")
-	@Column(name="service_charges")
-	private int serviceCharges;
+	@Column(name="provider_lastname")
+	private String lastName;
 	
-	@Column(name="provider_time")
-	private String providerTime;
+	@Pattern(regexp = "^$|[0-9]{10}",message = "Please input proper format")
+	@Column(name="provider_mobile")
+	private long mobile;
+	
+	@Column(name="provider_username")
+	private String userName;
+	
+	@Size(min = 4,max = 10,message = "Password must be more than 4 and less than 10 charcters")
+	@Column(name="provider_password")
+	private String password;
+	
+	@Column(unique = true)
+	@Email(message = "Please input proper format")
+	private String emailId;
+	
+	public String getRole() {
+		return role;
+	}
 
-	@Column(name="numberof_service_per_day")
-	private double numberofServicePerDay;
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Column(name="provider_city")
+	private String city;
 	
-	@OneToOne
-	@JoinColumn(name="provider_id")
-	private ServiceProvider providerId;
+	@Column(name="provider_role")
+	private String role;
+	
+	@Column(name="provider_is_verified")
+	private boolean isVerified;
+	
+
+	public ServiceProvider(int id, String firstName, String lastName, long mobile, String userName, String password,
+			String emailId, String city, String role, boolean isVerified) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mobile = mobile;
+		this.userName = userName;
+		this.password = password;
+		this.emailId = emailId;
+		this.city = city;
+		this.role=role;
+		this.isVerified = isVerified;
+	}
+
+	public ServiceProvider() {
+		super();
+	}
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
-	public String getServiceName() {
-		return serviceName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setServiceName(String serviceName) {
-		this.serviceName = serviceName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public int getServiceCharges() {
-		return serviceCharges;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setServiceCharges(int serviceCharges) {
-		this.serviceCharges = serviceCharges;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getProviderTime() {
-		return providerTime;
+	public long getMobile() {
+		return mobile;
 	}
 
-	public void setProviderTime(String providerTime) {
-		this.providerTime = providerTime;
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
 	}
 
-	public double getNumberofServicePerDay() {
-		return numberofServicePerDay;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setNumberofServicePerDay(double numberofServicePerDay) {
-		this.numberofServicePerDay = numberofServicePerDay;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public ServiceProvider getProviderId() {
-		return providerId;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setProviderId(ServiceProvider providerId) {
-		this.providerId = providerId;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public ServiceInfo(int id, @NotEmpty(message = "Field must not be null") String serviceName,
-			@NotEmpty(message = "Field must not be null") int serviceCharges, String providerTime,
-			double numberofServicePerDay, ServiceProvider providerId) {
-		super();
-		Id = id;
-		this.serviceName = serviceName;
-		this.serviceCharges = serviceCharges;
-		this.providerTime = providerTime;
-		this.numberofServicePerDay = numberofServicePerDay;
-		this.providerId = providerId;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public ServiceInfo() {
-		super();
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
 	}
 
 	@Override
 	public String toString() {
-		return "ServiceInfo [Id=" + Id + ", serviceName=" + serviceName + ", serviceCharges=" + serviceCharges
-				+ ", providerTime=" + providerTime + ", numberofServicePerDay=" + numberofServicePerDay
-				+ ", providerId=" + providerId + "]";
+		return "ServiceProvider [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mobile="
+				+ mobile + ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", city="
+				+ city + ", role=" + role + ", isVerified=" + isVerified + "]";
 	}
-
-	
 	
 }
