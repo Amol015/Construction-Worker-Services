@@ -7,44 +7,64 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import study.jparest.Entity.Review;
-import study.jparest.repository.ReviewRepository;
+import study.jparest.Entity.ServiceInfo;
+import study.jparest.repository.ServiceInfoRepository;
 
 @RestController
-@RequestMapping("cws/Review")
-public class ReviewController {
+@RequestMapping("/cws3")
+public class ServiceController {
 	
-	@Autowired  
-	ReviewRepository reviewrepo;
+	@Autowired
+	ServiceInfoRepository serrp; 
 	
-	@GetMapping("/getAllReviews")
-	public List<Review> getReviews()
+	@GetMapping("/getServices")
+	public List<ServiceInfo> getServices()
 	{
-		return reviewrepo.findAll();
+		return serrp.findAll();
 	}
 	
-	@PostMapping("/addReview")
-	public String addReview(@RequestBody Review r)
+	@PostMapping("/addService")
+	public String addService(@RequestBody ServiceInfo se)
 	{
-		Review rev = new Review( r.getId(),r.getReviewComment(),r.getReviewRating(),r.getCustomerId(),r.getBookingId(),r.getProviderId());
-		reviewrepo.save(rev);
-		return "review Added";
+		ServiceInfo ser = new ServiceInfo(se.getId(),se.getServiceName(),se.getServiceCharges(),se.getProviderTime(),se.getNumberofServicePerDay(),se.getProviderId());
+		serrp.save(ser);
+		return "ServiceAdded";
 	}
 	
-	@DeleteMapping("/delete/{id}")
-	public String deleteReview(@PathVariable int id)
+	  @PutMapping("/updateService/{id}/{serviceName}")
+	  public String updateService(@PathVariable int id ,@PathVariable String serviceName )
+	  {
+		  List<ServiceInfo> list = serrp.findAll();
+		 for(ServiceInfo service :list)
+		 {
+		  if(service.getId()==id)
+		  {
+			  service.setServiceName(serviceName);
+		  }
+		 }
+	    serrp.saveAll(list);
+	    return "change done";	 
+	  }
+	 
+	/*@DeleteMapping("/delete/{serviceName}")
+	public String deleteService(@PathVariable String serviceName )
 	{
-		 reviewrepo.deleteById(id);
-		 return "review Deleted";
+		serrp.deleteByName(serviceName);
+		return "deleted";
+	} */
+	
+	@DeleteMapping("/deleteById/{serviceId}")
+	public String deleteService(@PathVariable int serviceId )
+	{
+		serrp.deleteById(serviceId);
+		return "deleted";
 	}
 	
 	
-	
-	
-	
-	
+
 }
