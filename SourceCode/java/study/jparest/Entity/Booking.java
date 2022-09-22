@@ -1,40 +1,39 @@
 package study.jparest.Entity;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.persistence.Id;
 
 @Entity
-@Table(name="review_tbl")
-public class Review {
+@Table(name="service_info_tbl")
+public class ServiceInfo {
 	
 	@Id
-	@Column(name="review_id")
+	@Column(name="service_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
-		
-	@Column(name="review_comment")
-	private String reviewComment;
 	
-	@Column(name="review_rating")
-	private double reviewRating;
+	@NotEmpty(message = "Field must not be null")
+	@Column(name="service_name")
+	private String serviceName;
+	
+	@NotEmpty(message = "Field must not be null")
+	@Column(name="service_charges")
+	private int serviceCharges;
+	
+	@Column(name="provider_time")
+	private String providerTime;
+
+	@Column(name="numberof_service_per_day")
+	private double numberofServicePerDay;
 	
 	@OneToOne
-	@JoinColumn(name="customer_id")
-	private Customer customerId;
-	
-	@OneToOne
-	@JoinColumn(name="booking_id")
-	private Booking bookingId;
-	
-	@OneToOne
-	@JoinColumn(name="provider_id ")
-	private ServiceProvider providerId ;
+	@JoinColumn(name="provider_id")
+	private ServiceProvider providerId;
 
 	public int getId() {
 		return Id;
@@ -44,36 +43,36 @@ public class Review {
 		Id = id;
 	}
 
-	public String getReviewComment() {
-		return reviewComment;
+	public String getServiceName() {
+		return serviceName;
 	}
 
-	public void setReviewComment(String reviewComment) {
-		this.reviewComment = reviewComment;
+	public void setServiceName(String serviceName) {
+		this.serviceName = serviceName;
 	}
 
-	public double getReviewRating() {
-		return reviewRating;
+	public int getServiceCharges() {
+		return serviceCharges;
 	}
 
-	public void setReviewRating(double reviewRating) {
-		this.reviewRating = reviewRating;
+	public void setServiceCharges(int serviceCharges) {
+		this.serviceCharges = serviceCharges;
 	}
 
-	public Customer getCustomerId() {
-		return customerId;
+	public String getProviderTime() {
+		return providerTime;
 	}
 
-	public void setCustomerId(Customer customerId) {
-		this.customerId = customerId;
+	public void setProviderTime(String providerTime) {
+		this.providerTime = providerTime;
 	}
 
-	public Booking getBookingId() {
-		return bookingId;
+	public double getNumberofServicePerDay() {
+		return numberofServicePerDay;
 	}
 
-	public void setBookingId(Booking bookingId) {
-		this.bookingId = bookingId;
+	public void setNumberofServicePerDay(double numberofServicePerDay) {
+		this.numberofServicePerDay = numberofServicePerDay;
 	}
 
 	public ServiceProvider getProviderId() {
@@ -84,28 +83,29 @@ public class Review {
 		this.providerId = providerId;
 	}
 
-	public Review(int id, String reviewComment, double reviewRating, Customer customerId, Booking bookingId,
-			ServiceProvider providerId) {
+	public ServiceInfo(int id, @NotEmpty(message = "Field must not be null") String serviceName,
+			@NotEmpty(message = "Field must not be null") int serviceCharges, String providerTime,
+			double numberofServicePerDay, ServiceProvider providerId) {
 		super();
 		Id = id;
-		this.reviewComment = reviewComment;
-		this.reviewRating = reviewRating;
-		this.customerId = customerId;
-		this.bookingId = bookingId;
+		this.serviceName = serviceName;
+		this.serviceCharges = serviceCharges;
+		this.providerTime = providerTime;
+		this.numberofServicePerDay = numberofServicePerDay;
 		this.providerId = providerId;
 	}
 
-	public Review() {
+	public ServiceInfo() {
 		super();
 	}
 
 	@Override
 	public String toString() {
-		return "Review [Id=" + Id + ", reviewComment=" + reviewComment + ", reviewRating=" + reviewRating
-				+ ", customerId=" + customerId + ", bookingId=" + bookingId + ", providerId=" + providerId + "]";
+		return "ServiceInfo [Id=" + Id + ", serviceName=" + serviceName + ", serviceCharges=" + serviceCharges
+				+ ", providerTime=" + providerTime + ", numberofServicePerDay=" + numberofServicePerDay
+				+ ", providerId=" + providerId + "]";
 	}
-	
+
 	
 	
 }
-
