@@ -19,7 +19,7 @@ export default function Contact() {
           <a
             target="_blank"
             href="https://wa.me/917741884882?text=I am Interested in the Services"
-            class="border-btn2 border-btn4"
+            className="border-btn2 border-btn4"
           >
             click to watsaap
           </a>

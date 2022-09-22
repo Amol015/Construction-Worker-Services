@@ -155,10 +155,10 @@ nav .menu-btn,
   justify-content: space-between;
   padding: 50px 5% 0px 5%;
   position: relative;
-  border: solid;
+  /* border: solid;
   border-image-slice: 1;
   border-width: 3px;
-  border-image-source: linear-gradient(60deg, #23700bdc, #25ffe9);
+  border-image-source: linear-gradient(60deg, #23700bdc, #25ffe9); */
 }
 
 .about-text {
@@ -211,10 +211,10 @@ nav .menu-btn,
   justify-content: center;
   padding-top: 40px;
   background-color: #ffffff;
-  border: solid;
+  /* border: solid;
   border-image-slice: 1;
   border-width: 3px;
-  border-image-source: linear-gradient(60deg, #23700bdc, #25ffe9);
+  border-image-source: linear-gradient(60deg, #23700bdc, #25ffe9); */
 }
 .a-container {
   display: flex;

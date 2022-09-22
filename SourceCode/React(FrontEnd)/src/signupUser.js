@@ -12,6 +12,7 @@ import {
     MDBInput
 }
     from 'mdb-react-ui-kit';
+import Navbar from "./component/Navbar";
 
 function SignUp() {
 
@@ -19,11 +20,11 @@ function SignUp() {
     const [registration, setRegistration] = useState({
         firstname: "",
         lastname: "",
-        email: "",
-        contact: "",
-        user_name: "",
-        address: "",
+        mobile: "",
+        userName: "",
         password: "",
+        emailId: "",
+        address: "",
 
     });
 
@@ -64,7 +65,10 @@ function SignUp() {
     }
     return (
 
+
+
         <MDBContainer className="my-6">
+            <Navbar></Navbar>
 
             <MDBCard>
                 <MDBRow className='g-0'>
@@ -74,7 +78,7 @@ function SignUp() {
                     <MDBCol md='6'>
                         <form>
 
-                            <h3 style={{ textAlign: "center" }}>Register</h3>
+                            <br /><br /> <h3 style={{ textAlign: "center" }}>Register</h3>
 
                             <div className="form-group">
                                 <label className="mx-4,my-4"> First name</label>
@@ -124,7 +128,7 @@ function SignUp() {
                         </form>
                     </MDBCol>
 
-                    <MDBCol md='6'>
+                    <MDBCol md='6'><br /><br /><br />
                         <MDBCardImage src='https://www.bing.com/th/id/OGC.155942bd98fd614da19b4a1a942f4d80?pid=1.7&rurl=https%3a%2f%2fcdn.dribbble.com%2fusers%2f1536793%2fscreenshots%2f3434500%2fvideoconstruc2.gif&ehk=fge2wILmOaGlGCQLjLDHLXUccVP%2fsWviVg6W0UYBPx8%3d' alt="login form" className='rounded-start w-100' height={650} />
                     </MDBCol>
 

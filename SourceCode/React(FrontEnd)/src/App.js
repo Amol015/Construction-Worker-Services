@@ -1,17 +1,24 @@
-import React, { useState } from "react";
-import LoginCustomer from "./LoginUser";
-import { Route, Router } from "react-router";
+import React from "react";
+import RoutingComponents from "./RoutingComponents";
+//import LoginCustomer from "./LoginUser";
+//import { Route, Router } from "react-router";
 import Applications from "./App4";
-import App2 from "./RoutingComponents";
-import App7 from "./App7";
+// import ServicePage from "./component/ServicePage";
+// import SerNavbar from "./component/SerNavbar";
+// import ServicesItem from "./component/ServicesItem";
+// import CarpenterPage from "./component/Carpenter";
+// import LandingpageRouting from "./LandingpageRouting";
+// import ElectricianPage from "./component/Electrician";
+// import BookService from "./component/BookService";
+// import BookingPage from "./component/BookingPage";
+
+
 
 
 
 function App() {
   return (
-
-    <App2></App2>
-    //<App7></App7>
+    <RoutingComponents></RoutingComponents>
 
   );
 }

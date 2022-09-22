@@ -5,12 +5,14 @@ import SignUp from "./signupUser";
 import Header from "./component/Header";
 import LandingpageRouting from "./LandingpageRouting";
 import LoginCustomer from "./LoginUser";
+import CarpenterPage from "./component/Carpenter";
+import SignUpSP from "./signupSerProvider";
 
 
 // import { Provider } from "react-redux";
 // import store from './Store/reducer';
 
-const App2 = () => {
+const RoutingComponents = () => {
     return (
         <>
             <BrowserRouter>
@@ -20,6 +22,9 @@ const App2 = () => {
                     <Route path="/" element={<LandingpageRouting />} />
                     <Route index element={<LandingpageRouting />} />
                     <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/booknow" element={<LoginCustomer />} />
+                    <Route path="/signupSP" element={<SignUpSP />} />
+
                 </Routes>
                 {/* </Provider> */}
             </BrowserRouter>
@@ -27,4 +32,4 @@ const App2 = () => {
     )
 }
 
-export default App2;
+export default RoutingComponents;

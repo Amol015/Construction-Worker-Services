@@ -9,13 +9,33 @@ export default function Feature() {
   return (
     <div id="features">
       <div className="a-container">
-        <FeatureBox image={featureimage} title="Plumber"></FeatureBox>
-        <FeatureBox image={featureimage1} title="Electrician"></FeatureBox>
+        <FeatureBox
+          image={featureimage}
+          title="Plumber"
+          description="Grouting 
+          Water Filter 
+          Bath Fitting
+          Tap Fitting
+          "
+        ></FeatureBox>
+        <FeatureBox
+          image={featureimage1}
+          title="Electrician"
+          description="Switch/Socket Replacement Ceiling fan Installation 
+          "
+        ></FeatureBox>
         <FeatureBox
           image={featureimage2}
           title="Interior Designer"
+          description="Living room/Bedroom Modular Kitchen Modern Washrooms
+          "
         ></FeatureBox>
-        <FeatureBox image={featureimage3} title="Carpenter"></FeatureBox>
+        <FeatureBox
+          image={featureimage3}
+          title="Carpenter"
+          description="Bed Wardrobe Tables Chairs 
+        "
+        ></FeatureBox>
       </div>
     </div>
   );

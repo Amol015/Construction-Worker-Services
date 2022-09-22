@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from "react";
+import axios from "axios";
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
 
 import Login from './login'
 import SignUp from './signupUser'
@@ -17,7 +19,59 @@ import {
     from 'mdb-react-ui-kit';
 
 
-function SignUp() {
+function SignUpSP() {
+
+    const [registration, setRegistration] = useState({
+        firstName: "",
+        lastName: "",
+        mobile: "",
+        userName: "",
+        password: "",
+        emailId: "",
+        city: "",
+        role: "",
+        isVerified: "",
+
+
+    });
+
+
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setRegistration({ ...registration, [name]: value });
+    };
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:8080/cws/register", {
+            firstName: registration.firstName,
+            lastName: registration.lastName,
+            mobile: registration.mobile,
+            userName: registration.userName,
+            password: registration.password,
+            emailId: registration.emailId,
+            city: registration.city,
+            role: registration.role,
+            isVerified: registration.isVerified,
+        }).then((response) => {
+            console.log(response.data);
+            alert("Service Provider added");
+        }).catch((e) => {
+            console.log(e);
+            alert("Service Provider not added")
+        })
+    }
+    const getAll = (e) => {
+        e.preventDefault();
+        axios.get("http://localhost:8080/cws/getAll", {}).
+            then((response) => {
+                console.log(response.data)
+            }).catch((e) => {
+                console.log(e);
+                alert("Empty ")
+            })
+    }
     return (
 
         <MDBContainer className="my-5">
@@ -35,40 +89,39 @@ function SignUp() {
 
                             <div className="form-group">
                                 <label>First name</label>
-                                <input type="text" className="form-control" placeholder="First name" />
+                                <input type="text" className="form-control" placeholder="First name" name='firstName' onChange={handleChange} />
                             </div>
 
                             <div className="form-group">
                                 <label>Last name</label>
-                                <input type="text" className="form-control" placeholder="Last name" />
+                                <input type="text" className="form-control" placeholder="Last name" name='lastName' onChange={handleChange} />
                             </div>
 
                             <div className="form-group">
-                                <label>Email</label>
-                                <input type="email" className="form-control" placeholder="Enter email" />
+                                <label>Mobile Number</label>
+                                <input type="number" className="form-control" placeholder="Enter Mobile Number" name='mobile' onChange={handleChange} />
                             </div>
                             <div className="form-group">
                                 <label>User Name</label>
-                                <input type="text" className="form-control" placeholder="Username name" />
+                                <input type="text" className="form-control" placeholder="Username name" name='userName' onChange={handleChange} />
                             </div>
 
                             <div className="form-group">
                                 <label>Password</label>
-                                <input type="password" className="form-control" placeholder="Enter password" />
+                                <input type="password" className="form-control" placeholder="Enter password" name='password' onChange={handleChange} />
                             </div>
 
                             <div className="form-group">
-                                <label>Mobile no</label>
-                                <input type="text" className="form-control" placeholder="Mobile No" />
+                                <label>Email Id</label>
+                                <input type="email" className="form-control" placeholder="Enter Email-Id" name='emailId' onChange={handleChange} />
                             </div>
 
                             <div className="form-group">
-                                <label>Address : </label>
-                                <input type="text" className="form-control" placeholder="Address" />
+                                <label>City </label>
+                                <input type="text" className="form-control" placeholder="Enter City" name='city' onChange={handleChange} />
                             </div>
 
-
-                            <button type="submit" className="btn btn-dark btn-lg btn-block">Register</button>
+                            <button type="submit" onClick={handleClick} className="btn btn-dark btn-lg btn-block">Register</button>
                             <p className="forgot-password text-right">
                                 Already registered <a href="#">log in?</a>
                             </p>
@@ -84,4 +137,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default SignUpSP;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 export default function FeatureBox(props) {
   return (
@@ -8,6 +9,10 @@ export default function FeatureBox(props) {
       </div>
       <div className="s-b-text">
         <h2> {props.title} </h2>
+        <p>{props.description}</p>
+        <Button variant="primary" size="sm" type="submit" href="./login">
+          Book Now
+        </Button>{" "}
       </div>
     </div>
   );

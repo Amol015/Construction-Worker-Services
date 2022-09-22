@@ -1,4 +1,4 @@
-/* .App {
+.App {
   text-align: center;
 }
 
@@ -53,7 +53,7 @@ h1#title {
   color: #fff;
 
   height: fit-content;
-} */
+}
 
 .app {
   display: flex;
