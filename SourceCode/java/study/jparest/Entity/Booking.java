@@ -1,146 +1,85 @@
 package study.jparest.Entity;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name="booking_tbl")
 public class Booking {
-
+	
 	@Id
 	@Column(name="booking_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	
-	@ManyToOne
-	@JoinColumn(name="provider_id", nullable=false)
-	private ServiceProvider serviceProvider;
-
-	@ManyToOne
-	@JoinColumn(name="customer_id", nullable=false)
-	private Customer customer;
-
-	@OneToOne
-	@JoinColumn(name="service_id", nullable=false)
-	private ServiceInfo serviceInfo;
-
-	@OneToMany(mappedBy = "booking")
-	private List<Review> review;
-
+	
 	@Column(name="service_date")
-	private Date service_date;
-
+	private Date serviceDate;
+	
 	@Column(name="service_time")
-	private String service_time;
-
+	private String serviceTime;
+	
 	@Column(name="booking_date")
-	private Date booking_date;
-
+	private Date bookingDate;
+	
 	@Column(name=" booking_status")
-	private boolean  booking_status;
-
+	private boolean  bookingStatus;
+	
 	@Column(name="discount")
 	private double discount;
-
+	
 	@Column(name="total_amount")
-	private double total_amount;
-
+	private double totalAmount;
+	
 	@Column(name="service_address")
 	private String address;
-
-	@Column(name="service_contact_person")
-	private long service_contact_person;
-
-	@Column
-	private String morningSlot; //morning,evening,afternoon,
 	
-	@Column
-	private String eveningSlot;
+	@Column(name="servie_contactNo")
+	private long servicecontactNo;
 	
-	@Column
-	private String afternoonSlot;
-				
+	
+	@ManyToOne
+	@JoinColumn(name="provider_id")
+	private ServiceProvider providerId;
+	
+	@OneToOne
+	@JoinColumn(name="customer_id")
+	private Customer customerId;
+	
+	@OneToOne
+	@JoinColumn(name="service_id")
+	private ServiceInfo serviceId;
+
+	public Booking(int id, Date serviceDate, String serviceTime, Date bookingDate, boolean bookingStatus,
+			double discount, double totalAmount, String address, long servicecontactNo, ServiceProvider providerId,
+			Customer customerId, ServiceInfo serviceId) {
+		super();
+		Id = id;
+		this.serviceDate = serviceDate;
+		this.serviceTime = serviceTime;
+		this.bookingDate = bookingDate;
+		this.bookingStatus = bookingStatus;
+		this.discount = discount;
+		this.totalAmount = totalAmount;
+		this.address = address;
+		this.servicecontactNo = servicecontactNo;
+		this.providerId = providerId;
+		this.customerId = customerId;
+		this.serviceId = serviceId;
+	}
+
 	public Booking() {
 		super();
 	}
-
-	public Booking(int id, Date service_date, String service_time, 
-			Date booking_date, boolean booking_status,
-			double discount, double total_amount,
-			String address, long service_contact_person,
-			ServiceProvider serviceProvider, Customer customer, 
-			ServiceInfo serviceInfo, List<Review> review) {
-		super();
-		Id = id;
-		this.service_date = service_date;
-		this.service_time = service_time;
-		this.booking_date = booking_date;
-		this.booking_status = booking_status;
-		this.discount = discount;
-		this.total_amount = total_amount;
-		this.address = address;
-		this.service_contact_person = service_contact_person;
-		this.serviceProvider = serviceProvider;
-		this.customer = customer;
-		this.serviceInfo = serviceInfo;
-		this.review = review;
-	}
-
-	public Booking(int id,ServiceProvider serviceProvider, Customer customer, ServiceInfo serviceInfo, 
-			Date service_date, String service_time, Date booking_date, boolean booking_status,
-			double discount, double total_amount, String address, long service_contact_person
-			) {
-		super();
-		Id = id;
-		this.service_date = service_date;
-		this.service_time = service_time;
-		this.booking_date = booking_date;
-		this.booking_status = booking_status;
-		this.discount = discount;
-		this.total_amount = total_amount;
-		this.address = address;
-		this.service_contact_person = service_contact_person;
-		this.serviceProvider = serviceProvider;
-		this.customer = customer;
-		this.serviceInfo = serviceInfo;
-	}		
-
-
-	public Booking(int id, Date service_date, String service_time, Date booking_date, boolean booking_status,
-			double discount, double total_amount, String address, long service_contact_person, String morningSlot,
-			 String afternoonSlot,String eveningSlot, ServiceProvider serviceProvider, Customer customer,
-			ServiceInfo serviceInfo, List<Review> review) {
-		super();
-		Id = id;
-		this.service_date = service_date;
-		this.service_time = service_time;
-		this.booking_date = booking_date;
-		this.booking_status = booking_status;
-		this.discount = discount;
-		this.total_amount = total_amount;
-		this.address = address;
-		this.service_contact_person = service_contact_person;
-		this.morningSlot = morningSlot;
-		this.eveningSlot = eveningSlot;
-		this.afternoonSlot = afternoonSlot;
-		this.serviceProvider = serviceProvider;
-		this.customer = customer;
-		this.serviceInfo = serviceInfo;
-		this.review = review;
-	}
-
 
 	public int getId() {
 		return Id;
@@ -150,61 +89,36 @@ public class Booking {
 		Id = id;
 	}
 
-	
-	public String getMorningSlot() {
-		return morningSlot;
+	public Date getServiceDate() {
+		return serviceDate;
 	}
 
-	public void setMorningSlot(String morningSlot) {
-		this.morningSlot = morningSlot;
+	public void setServiceDate(Date serviceDate) {
+		this.serviceDate = serviceDate;
 	}
 
-	public String getEveningSlot() {
-		return eveningSlot;
+	public String getServiceTime() {
+		return serviceTime;
 	}
 
-	public void setEveningSlot(String eveningSlot) {
-		this.eveningSlot = eveningSlot;
+	public void setServiceTime(String serviceTime) {
+		this.serviceTime = serviceTime;
 	}
 
-	public String getAfternoonSlot() {
-		return afternoonSlot;
+	public Date getBookingDate() {
+		return bookingDate;
 	}
 
-	public void setAfternoonSlot(String afternoonSlot) {
-		this.afternoonSlot = afternoonSlot;
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
 	}
 
-	public Date getService_date() {
-		return service_date;
+	public boolean isBookingStatus() {
+		return bookingStatus;
 	}
 
-	public void setService_date(Date service_date) {
-		this.service_date = service_date;
-	}
-
-	public String getService_time() {
-		return service_time;
-	}
-
-	public void setService_time(String service_time) {
-		this.service_time = service_time;
-	}
-
-	public Date getBooking_date() {
-		return booking_date;
-	}
-
-	public void setBooking_date(Date booking_date) {
-		this.booking_date = booking_date;
-	}
-
-	public boolean isBooking_status() {
-		return booking_status;
-	}
-
-	public void setBooking_status(boolean booking_status) {
-		this.booking_status = booking_status;
+	public void setBookingStatus(boolean bookingStatus) {
+		this.bookingStatus = bookingStatus;
 	}
 
 	public double getDiscount() {
@@ -215,12 +129,12 @@ public class Booking {
 		this.discount = discount;
 	}
 
-	public double getTotal_amount() {
-		return total_amount;
+	public double getTotalAmount() {
+		return totalAmount;
 	}
 
-	public void setTotal_amount(double total_amount) {
-		this.total_amount = total_amount;
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 	public String getAddress() {
@@ -231,43 +145,48 @@ public class Booking {
 		this.address = address;
 	}
 
-	public long getService_contact_person() {
-		return service_contact_person;
+	public long getServicecontactNo() {
+		return servicecontactNo;
 	}
 
-	public void setService_contact_person(long service_contact_person) {
-		this.service_contact_person = service_contact_person;
+	public void setServicecontactNo(long servicecontactNo) {
+		this.servicecontactNo = servicecontactNo;
 	}
 
-	public ServiceProvider getServiceProvider() {
-		return serviceProvider;
+	public ServiceProvider getProviderId() {
+		return providerId;
 	}
 
-	public void setServiceProvider(ServiceProvider serviceProvider) {
-		this.serviceProvider = serviceProvider;
+	public void setProviderId(ServiceProvider providerId) {
+		this.providerId = providerId;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Customer getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerId(Customer customerId) {
+		this.customerId = customerId;
 	}
 
-	public ServiceInfo getServiceInfo() {
-		return serviceInfo;
+	public ServiceInfo getServiceId() {
+		return serviceId;
 	}
 
-	public void setServiceInfo(ServiceInfo serviceInfo) {
-		this.serviceInfo = serviceInfo;
+	public void setServiceId(ServiceInfo serviceId) {
+		this.serviceId = serviceId;
 	}
 
-	public List<Review> getReview() {
-		return review;
+	@Override
+	public String toString() {
+		return "Booking [Id=" + Id + ", serviceDate=" + serviceDate + ", serviceTime=" + serviceTime + ", bookingDate="
+				+ bookingDate + ", bookingStatus=" + bookingStatus + ", discount=" + discount + ", totalAmount="
+				+ totalAmount + ", address=" + address + ", servicecontactNo=" + servicecontactNo + ", providerId="
+				+ providerId + ", customerId=" + customerId + ", serviceId=" + serviceId + "]";
 	}
+	
+	
 
-	public void setReview(List<Review> review) {
-		this.review = review;
-	}			
+	
+	
 }
