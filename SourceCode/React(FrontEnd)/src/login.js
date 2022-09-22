@@ -1,11 +1,44 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 export default class Login extends Component {
+
+    constructor()
+    {
+        super();
+        this.state={data:"Default"}
+        this.handleChange = this.handleChange.bind(this)
+    }
     render() {
+        const [Login, setLogin] = ({
+            email: "",  
+            password: "",  
+            
+          });
+          
+        
+      const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setLogin({ ...Login, [name]: value });
+      };
+    
+      const handleClick = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:8080/cws1/login/{emaild}/{password}",{
+         
+            emailId: Login.emailId,
+            password: Login.password,
+        }).then((response) =>{
+            console.log(response.data);
+            alert("Login successful");
+        }).catch((e) => {
+            console.log(e);
+            alert("Unsuccessful login")})
+    }
         return (
             <form>
 
-                <h3>Log in</h3>
+                <h3>Login As Customer</h3>
 
                 <div className="form-group">
                     <label>Email</label>
@@ -24,7 +57,8 @@ export default class Login extends Component {
                     </div>
                 </div>
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Sign in</button>
+                <button type="submit" className="btn btn-dark btn-lg btn-block" 
+                                    onClick={handleClick}>Sign in</button>
                 <p className="forgot-password text-right">
                     Forgot <a href="todo">password?</a>
                 </p>

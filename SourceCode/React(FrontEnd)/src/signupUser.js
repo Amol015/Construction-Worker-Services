@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
+<<<<<<< HEAD
+import { Form } from "react-router-dom";
+function CustomerRegs()
+{
+    
+=======
 import {
     MDBBtn,
     MDBContainer,
@@ -17,6 +23,7 @@ import Navbar from "./component/Navbar";
 function SignUp() {
 
 
+>>>>>>> 0e7eb5220793ad1ad0e80bfcd356f59d35fd57bc
     const [registration, setRegistration] = useState({
         firstname: "",
         lastname: "",
@@ -140,6 +147,81 @@ function SignUp() {
 
     );
 }
+const getAll = (e) => {
+    e.preventDefault();
+    axios.get("http://localhost:8080/cws1/getAllCustomers",{}).
+    then((response) => {
+        console.log(response.data)
+    }).catch((e) => {
+        console.log(e);
+        alert("Empty ")})
+}
 
+<<<<<<< HEAD
+  return (
+   
+      <>
+      
+     firstName <input type='text' name="firstName" onChange={handleChange}/>
+     lastName <input type='text' name="lastName" onChange={handleChange}/>
+     mobile <input type='text' name="mobile" onChange={handleChange}/>
+    userName <input type='text' name="userName" onChange={handleChange}/>
+     password <input type='text' name="password" onChange={handleChange}/>
+    emailId  <input type='text' name="emailId" onChange={handleChange}/>
+    address  <input type='text' name="address" onChange={handleChange}/>
+      <input type='submit' value="add user" onClick={handleClick}/><br/>
+ 
+
+
+    </>
+    
+  )
+//   render ()
+//   {
+//     return(
+//     <div>
+//         <h1 className="text-center">Customer List</h1>
+//         <table className="table table-striped">
+//             <thead>
+//                 <tr>
+//                     <td>FirstName</td>
+//                     <td>Lastname</td>
+//                     <td>Mobile</td>
+//                     <td>UserName</td>
+//                     <td>Password</td>
+//                     <td>EmailId</td>
+//                     <td>Address</td>
+//                 </tr>
+//             </thead>
+//             <tbody>
+//                 {
+//                     this.state.users.map(
+//                       user=>
+//                       <tr key={user.customer_id}>
+//                         <td>{user.customer_id}</td>
+//                         <td>{user.firstName}</td>
+//                         <td>{user.lastName}</td>
+//                         <td>{user.mobile}</td>
+//                         <td>{user.userName}</td>
+//                         <td>{user.password}</td>
+//                         <td>{user.emailId}</td>
+//                         <td>{user.address}</td>
+//                       </tr>  
+//                     )
+//                 }
+//             </tbody>
+//         </table>
+//     </div>
+//     )
+// }
+
+
+
+
+}
+
+export default CustomerRegs;
+=======
 export default SignUp;
 
+>>>>>>> 0e7eb5220793ad1ad0e80bfcd356f59d35fd57bc

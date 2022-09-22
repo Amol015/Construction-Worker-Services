@@ -1,10 +1,14 @@
 package study.jparest.Entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +17,7 @@ public class Customer {
 
 	@Id
 	@Column(name="customer_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	
 	@Column(name="customer_firstname")
@@ -36,7 +40,13 @@ public class Customer {
 	
 	@Column(name="customer_address")
 	private String address;
+	
+	@OneToOne(mappedBy = "customer")
+	private Review review;
 
+	@OneToMany(mappedBy = "customer")
+	private List<Booking> booking;
+	
 	public int getId() {
 		return Id;
 	}
