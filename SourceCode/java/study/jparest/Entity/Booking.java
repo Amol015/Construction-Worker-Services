@@ -1,7 +1,5 @@
 package study.jparest.Entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,115 +10,102 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="dispute_tbl")
-public class Dispute {
+@Table(name="review_tbl")
+public class Review {
 	
 	@Id
-	@Column(name="dispute_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name="review_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
+		
+	@Column(name="review_comment")
+	private String reviewComment;
 	
-	@Column(name="dispute_info")
-	private String disputeInfo;
+	@Column(name="review_rating")
+	private double reviewRating;
 	
-
-	@Column(name="raise_date")
-	private Date raiseDate;
-
-	@Column(name="resolve_date")
-	private Date resolveDate;
-	
-
-	@Column(name="dispute_status")
-	private String disputeStatus;
+	@OneToOne
+	@JoinColumn(name="customer_id")
+	private Customer customerId;
 	
 	@OneToOne
 	@JoinColumn(name="booking_id")
 	private Booking bookingId;
 	
-
-	public Dispute(int id, String disputeInfo, Date raiseDate, Date resolveDate, String disputeStatus,
-			Booking bookingId) {
-		super();
-		Id = id;
-		this.disputeInfo = disputeInfo;
-		this.raiseDate = raiseDate;
-		this.resolveDate = resolveDate;
-		this.disputeStatus = disputeStatus;
-		this.bookingId = bookingId;
-	}
-
-	
-
-	@Override
-	public String toString() {
-		return "Dispute [Id=" + Id + ", disputeInfo=" + disputeInfo + ", raiseDate=" + raiseDate + ", resolveDate="
-				+ resolveDate + ", disputeStatus=" + disputeStatus + ", bookingId=" + bookingId + "]";
-	}
-
-
+	@OneToOne
+	@JoinColumn(name="provider_id ")
+	private ServiceProvider providerId ;
 
 	public int getId() {
 		return Id;
 	}
 
-
 	public void setId(int id) {
 		Id = id;
 	}
 
-
-	public String getDisputeInfo() {
-		return disputeInfo;
+	public String getReviewComment() {
+		return reviewComment;
 	}
 
-
-	public void setDisputeInfo(String disputeInfo) {
-		this.disputeInfo = disputeInfo;
+	public void setReviewComment(String reviewComment) {
+		this.reviewComment = reviewComment;
 	}
 
-
-	public Date getRaiseDate() {
-		return raiseDate;
+	public double getReviewRating() {
+		return reviewRating;
 	}
 
-
-	public void setRaiseDate(Date raiseDate) {
-		this.raiseDate = raiseDate;
+	public void setReviewRating(double reviewRating) {
+		this.reviewRating = reviewRating;
 	}
 
-
-	public Date getResolveDate() {
-		return resolveDate;
+	public Customer getCustomerId() {
+		return customerId;
 	}
 
-
-	public void setResolveDate(Date resolveDate) {
-		this.resolveDate = resolveDate;
+	public void setCustomerId(Customer customerId) {
+		this.customerId = customerId;
 	}
-
-
-	public String getDisputeStatus() {
-		return disputeStatus;
-	}
-
-
-	public void setDisputeStatus(String disputeStatus) {
-		this.disputeStatus = disputeStatus;
-	}
-
 
 	public Booking getBookingId() {
 		return bookingId;
 	}
 
-
 	public void setBookingId(Booking bookingId) {
 		this.bookingId = bookingId;
 	}
 
+	public ServiceProvider getProviderId() {
+		return providerId;
+	}
 
-	public Dispute() {
+	public void setProviderId(ServiceProvider providerId) {
+		this.providerId = providerId;
+	}
+
+	public Review(int id, String reviewComment, double reviewRating, Customer customerId, Booking bookingId,
+			ServiceProvider providerId) {
+		super();
+		Id = id;
+		this.reviewComment = reviewComment;
+		this.reviewRating = reviewRating;
+		this.customerId = customerId;
+		this.bookingId = bookingId;
+		this.providerId = providerId;
+	}
+
+	public Review() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Review [Id=" + Id + ", reviewComment=" + reviewComment + ", reviewRating=" + reviewRating
+				+ ", customerId=" + customerId + ", bookingId=" + bookingId + ", providerId=" + providerId + "]";
+	}
+	
+	
+	
 }
+
