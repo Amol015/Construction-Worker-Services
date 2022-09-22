@@ -1,6 +1,5 @@
 package study.jparest.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,57 +7,39 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import study.jparest.Entity.Dispute;
-import study.jparest.repository.DisputeRepository;
+import study.jparest.Entity.Review;
+import study.jparest.repository.ReviewRepository;
 
 @RestController
-@RequestMapping("/cws/Dispute")
-public class DisputeController {
+@RequestMapping("cws/Review")
+public class ReviewController {
 	
-	@Autowired
-	DisputeRepository disputerepo;
+	@Autowired  
+	ReviewRepository reviewrepo;
 	
-	@GetMapping("/getAllDisputes")
-	public List<Dispute> getDispute()
+	@GetMapping("/getAllReviews")
+	public List<Review> getReviews()
 	{
-		return disputerepo.findAll();
-	}
-
-	@PostMapping("/generateDispute")
-	public String generateDispute(@RequestBody Dispute d)
-	{
-		Dispute d1 = new Dispute(d.getId(),d.getDisputeInfo(),d.getRaiseDate(),d.getResolveDate(),d.getDisputeStatus(),d.getBookingId());
-		disputerepo.save(d1);
-		return "dispute generated";
+		return reviewrepo.findAll();
 	}
 	
-	@PutMapping("/updateDispute/{id}/{dispute_status}")
-	public String updateStatus(@PathVariable int id , @PathVariable String dispute_status )
+	@PostMapping("/addReview")
+	public String addReview(@RequestBody Review r)
 	{
-		List<Dispute> list =disputerepo.findAll();
-		for(Dispute d :list)
-		{
-			if(d.getId()==id)
-			{
-				d.setDisputeStatus(dispute_status);
-			}
-		}
-		disputerepo.saveAll(list);
-		return "status updated";
+		Review rev = new Review( r.getId(),r.getReviewComment(),r.getReviewRating(),r.getCustomerId(),r.getBookingId(),r.getProviderId());
+		reviewrepo.save(rev);
+		return "review Added";
 	}
-	
-	
 	
 	@DeleteMapping("/delete/{id}")
-	public String deleteDispute(@PathVariable int id)
+	public String deleteReview(@PathVariable int id)
 	{
-		disputerepo.deleteById(id);
-		return "dispute Deleted";
+		 reviewrepo.deleteById(id);
+		 return "review Deleted";
 	}
 	
 	
