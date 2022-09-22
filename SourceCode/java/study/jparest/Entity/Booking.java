@@ -1,273 +1,161 @@
 package study.jparest.Entity;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="booking_tbl")
-public class Booking {
-
+@Table(name="service_provider_info_tbl")
+public class ServiceProvider {
+	
 	@Id
-	@Column(name="booking_id")
+	@Column(name = "provider_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="provider_id", nullable=false)
-	private ServiceProvider serviceProvider;
-
-	@ManyToOne
-	@JoinColumn(name="customer_id", nullable=false)
-	private Customer customer;
-
-	@OneToOne
-	@JoinColumn(name="service_id", nullable=false)
-	private ServiceInfo serviceInfo;
-
-	@OneToMany(mappedBy = "booking")
-	private List<Review> review;
-
-	@Column(name="service_date")
-	private Date service_date;
-
-	@Column(name="service_time")
-	private String service_time;
-
-	@Column(name="booking_date")
-	private Date booking_date;
-
-	@Column(name=" booking_status")
-	private boolean  booking_status;
-
-	@Column(name="discount")
-	private double discount;
-
-	@Column(name="total_amount")
-	private double total_amount;
-
-	@Column(name="service_address")
-	private String address;
-
-	@Column(name="service_contact_person")
-	private long service_contact_person;
-
-	@Column
-	private String morningSlot; //morning,evening,afternoon,
+	@NotEmpty(message = "Field must not be null")
+	@Column(name="provider_firstname")
+	private String firstName;
 	
-	@Column
-	private String eveningSlot;
+	@Column(name="provider_lastname")
+	private String lastName;
 	
-	@Column
-	private String afternoonSlot;
-				
-	public Booking() {
-		super();
+	@Pattern(regexp = "^$|[0-9]{10}",message = "Please input proper format")
+	@Column(name="provider_mobile")
+	private long mobile;
+	
+	@Column(name="provider_username")
+	private String userName;
+	
+	@Size(min = 4,max = 10,message = "Password must be more than 4 and less than 10 charcters")
+	@Column(name="provider_password")
+	private String password;
+	
+	@Column(unique = true)
+	@Email(message = "Please input proper format")
+	private String emailId;
+	
+	public String getRole() {
+		return role;
 	}
 
-	public Booking(int id, Date service_date, String service_time, 
-			Date booking_date, boolean booking_status,
-			double discount, double total_amount,
-			String address, long service_contact_person,
-			ServiceProvider serviceProvider, Customer customer, 
-			ServiceInfo serviceInfo, List<Review> review) {
-		super();
-		Id = id;
-		this.service_date = service_date;
-		this.service_time = service_time;
-		this.booking_date = booking_date;
-		this.booking_status = booking_status;
-		this.discount = discount;
-		this.total_amount = total_amount;
-		this.address = address;
-		this.service_contact_person = service_contact_person;
-		this.serviceProvider = serviceProvider;
-		this.customer = customer;
-		this.serviceInfo = serviceInfo;
-		this.review = review;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
-	public Booking(int id,ServiceProvider serviceProvider, Customer customer, ServiceInfo serviceInfo, 
-			Date service_date, String service_time, Date booking_date, boolean booking_status,
-			double discount, double total_amount, String address, long service_contact_person
-			) {
-		super();
-		Id = id;
-		this.service_date = service_date;
-		this.service_time = service_time;
-		this.booking_date = booking_date;
-		this.booking_status = booking_status;
-		this.discount = discount;
-		this.total_amount = total_amount;
-		this.address = address;
-		this.service_contact_person = service_contact_person;
-		this.serviceProvider = serviceProvider;
-		this.customer = customer;
-		this.serviceInfo = serviceInfo;
-	}		
+	@Column(name="provider_city")
+	private String city;
+	
+	@Column(name="provider_role")
+	private String role;
+	
+	@Column(name="provider_is_verified")
+	private boolean isVerified;
+	
 
-
-	public Booking(int id, Date service_date, String service_time, Date booking_date, boolean booking_status,
-			double discount, double total_amount, String address, long service_contact_person, String morningSlot,
-			 String afternoonSlot,String eveningSlot, ServiceProvider serviceProvider, Customer customer,
-			ServiceInfo serviceInfo, List<Review> review) {
+	public ServiceProvider(int id, String firstName, String lastName, long mobile, String userName, String password,
+			String emailId, String city, String role, boolean isVerified) {
 		super();
-		Id = id;
-		this.service_date = service_date;
-		this.service_time = service_time;
-		this.booking_date = booking_date;
-		this.booking_status = booking_status;
-		this.discount = discount;
-		this.total_amount = total_amount;
-		this.address = address;
-		this.service_contact_person = service_contact_person;
-		this.morningSlot = morningSlot;
-		this.eveningSlot = eveningSlot;
-		this.afternoonSlot = afternoonSlot;
-		this.serviceProvider = serviceProvider;
-		this.customer = customer;
-		this.serviceInfo = serviceInfo;
-		this.review = review;
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mobile = mobile;
+		this.userName = userName;
+		this.password = password;
+		this.emailId = emailId;
+		this.city = city;
+		this.role=role;
+		this.isVerified = isVerified;
 	}
 
+	public ServiceProvider() {
+		super();
+	}
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public long getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+	@Override
+	public String toString() {
+		return "ServiceProvider [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", mobile="
+				+ mobile + ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", city="
+				+ city + ", role=" + role + ", isVerified=" + isVerified + "]";
+	}
 	
-	public String getMorningSlot() {
-		return morningSlot;
-	}
-
-	public void setMorningSlot(String morningSlot) {
-		this.morningSlot = morningSlot;
-	}
-
-	public String getEveningSlot() {
-		return eveningSlot;
-	}
-
-	public void setEveningSlot(String eveningSlot) {
-		this.eveningSlot = eveningSlot;
-	}
-
-	public String getAfternoonSlot() {
-		return afternoonSlot;
-	}
-
-	public void setAfternoonSlot(String afternoonSlot) {
-		this.afternoonSlot = afternoonSlot;
-	}
-
-	public Date getService_date() {
-		return service_date;
-	}
-
-	public void setService_date(Date service_date) {
-		this.service_date = service_date;
-	}
-
-	public String getService_time() {
-		return service_time;
-	}
-
-	public void setService_time(String service_time) {
-		this.service_time = service_time;
-	}
-
-	public Date getBooking_date() {
-		return booking_date;
-	}
-
-	public void setBooking_date(Date booking_date) {
-		this.booking_date = booking_date;
-	}
-
-	public boolean isBooking_status() {
-		return booking_status;
-	}
-
-	public void setBooking_status(boolean booking_status) {
-		this.booking_status = booking_status;
-	}
-
-	public double getDiscount() {
-		return discount;
-	}
-
-	public void setDiscount(double discount) {
-		this.discount = discount;
-	}
-
-	public double getTotal_amount() {
-		return total_amount;
-	}
-
-	public void setTotal_amount(double total_amount) {
-		this.total_amount = total_amount;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public long getService_contact_person() {
-		return service_contact_person;
-	}
-
-	public void setService_contact_person(long service_contact_person) {
-		this.service_contact_person = service_contact_person;
-	}
-
-	public ServiceProvider getServiceProvider() {
-		return serviceProvider;
-	}
-
-	public void setServiceProvider(ServiceProvider serviceProvider) {
-		this.serviceProvider = serviceProvider;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public ServiceInfo getServiceInfo() {
-		return serviceInfo;
-	}
-
-	public void setServiceInfo(ServiceInfo serviceInfo) {
-		this.serviceInfo = serviceInfo;
-	}
-
-	public List<Review> getReview() {
-		return review;
-	}
-
-	public void setReview(List<Review> review) {
-		this.review = review;
-	}			
 }
