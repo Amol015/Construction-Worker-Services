@@ -1,75 +1,69 @@
 package study.jparest.controller;
+
+import java.util.Date;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import study.jparest.Entity.Customer;
-import study.jparest.Entity.ServiceProvider;
-import study.jparest.repository.CustomerRepository;
-import study.jparest.repository.ServiceProviderRepository;
-import org.springframework.web.bind.annotation.RequestBody;
+import study.jparest.Entity.Dispute;
+import study.jparest.repository.DisputeRepository;
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/cws1")
-public class CustomerController {
+@RequestMapping("/cws/Dispute")
+public class DisputeController {
 	
 	@Autowired
-	CustomerRepository cus;
+	DisputeRepository disputerepo;
 	
-	@GetMapping("/getAllCustomers")
-	public List<Customer> getAllServiceProviders()
+	@GetMapping("/getAllDisputes")
+	public List<Dispute> getDispute()
 	{
-		return cus.findAll();
+		return disputerepo.findAll();
 	}
 
-	@PostMapping("/registerCustomer")
-	public String register(@RequestBody Customer c)
+	@PostMapping("/generateDispute")
+	public String generateDispute(@RequestBody Dispute d)
 	{
-		Customer c1 = new Customer(c.getId(),c.getFirstName(),c.getLastName(),c.getMobile(),c.getEmailId(),c.getUserName(),c.getPassword(),c.getAddress());
-		cus.save(c1);
-		return "customer inserted";
+		Dispute d1 = new Dispute(d.getId(),d.getDisputeInfo(),d.getRaiseDate(),d.getResolveDate(),d.getDisputeStatus(),d.getBookingId());
+		disputerepo.save(d1);
+		return "dispute generated";
 	}
 	
-	@PostMapping("/login/{userName}/{password}")
-	  public String Login(@PathVariable String userName, @PathVariable String password)
-	  {
-		Customer sp1 = cus.checkLogin(userName,password);
-		if(sp1!= null)
+	@PutMapping("/updateDispute/{id}/{dispute_status}")
+	public String updateStatus(@PathVariable int id , @PathVariable String dispute_status )
+	{
+		List<Dispute> list =disputerepo.findAll();
+		for(Dispute d :list)
 		{
-			return "pass";
-		}
-		return "fail";	  
-	  }
-	
-	 @PutMapping("/changePass/{email}/{oldpwd}/{newpwd}")
-	  public String changePassword(@PathVariable String email,@PathVariable String oldpwd,@PathVariable String newpwd)
-		{	
-			Customer u= cus.findByEmailId(email);	
-			if(u!=null)
+			if(d.getId()==id)
 			{
-				if(u.getPassword().equals(oldpwd))
-				{
-					u.setPassword(newpwd);
-					System.out.println(u.getFirstName());
-					cus.save(u);
-					return "Password changed";
-				}
-			}	
-			return "Incorrect Credentials";		
+				d.setDisputeStatus(dispute_status);
+			}
 		}
-	  
-	 @DeleteMapping("/delete/{id}")
-     public String deleteCustomer(@PathVariable int id)
-     {
-		  cus.deleteById(id);
-		  return "Deleted Customer";
-     }	
+		disputerepo.saveAll(list);
+		return "status updated";
+	}
+	
+	
+	
+	@DeleteMapping("/delete/{id}")
+	public String deleteDispute(@PathVariable int id)
+	{
+		disputerepo.deleteById(id);
+		return "dispute Deleted";
+	}
+	
+	
+	
+	
+	
+	
 }
