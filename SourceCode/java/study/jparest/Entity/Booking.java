@@ -1,85 +1,51 @@
 package study.jparest.Entity;
 
-import java.util.Date;
-
-import javax.persistence.*;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="booking_tbl")
-public class Booking {
-	
+@Table(name="customer_info_tbl")
+public class Customer {
+
 	@Id
-	@Column(name="booking_id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="customer_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int Id;
 	
+	@NotEmpty(message = "Field must not be null")
+	@Column(name="customer_firstname")
+	private String firstName;
 	
-	@Column(name="service_date")
-	private Date serviceDate;
 	
-	@Column(name="service_time")
-	private String serviceTime;
+	@Column(name="customer_lastname")
+	private String lastName;
 	
-	@Column(name="booking_date")
-	private Date bookingDate;
+	@Column(name="customer_mobile")
+	@Pattern(regexp = "^$|[0-9]{10}",message = "Please input proper format")
+	private long mobile;
 	
-	@Column(name=" booking_status")
-	private boolean  bookingStatus;
+	@NotEmpty(message = "Field must not be null")
+	@Column(name="customer_username")
+	private String userName;
 	
-	@Column(name="discount")
-	private double discount;
+	@Size(min = 4,max = 10,message = "Password must be more than 4 and less than 10 charcters")
+	@Column(name="customer_password")
+	private String password;
 	
-	@Column(name="total_amount")
-	private double totalAmount;
+	@Column(unique = true)
+	@Email(message = "Please input proper format")
+	private String emailId;
 	
-	@Column(name="service_address")
+	@Column(name="customer_address")
 	private String address;
-	
-	@Column(name="servie_contactNo")
-	private long servicecontactNo;
-	
-	
-	@ManyToOne
-	@JoinColumn(name="provider_id")
-	private ServiceProvider providerId;
-	
-	@OneToOne
-	@JoinColumn(name="customer_id")
-	private Customer customerId;
-	
-	@OneToOne
-	@JoinColumn(name="service_id")
-	private ServiceInfo serviceId;
-
-	public Booking(int id, Date serviceDate, String serviceTime, Date bookingDate, boolean bookingStatus,
-			double discount, double totalAmount, String address, long servicecontactNo, ServiceProvider providerId,
-			Customer customerId, ServiceInfo serviceId) {
-		super();
-		Id = id;
-		this.serviceDate = serviceDate;
-		this.serviceTime = serviceTime;
-		this.bookingDate = bookingDate;
-		this.bookingStatus = bookingStatus;
-		this.discount = discount;
-		this.totalAmount = totalAmount;
-		this.address = address;
-		this.servicecontactNo = servicecontactNo;
-		this.providerId = providerId;
-		this.customerId = customerId;
-		this.serviceId = serviceId;
-	}
-
-	public Booking() {
-		super();
-	}
 
 	public int getId() {
 		return Id;
@@ -89,52 +55,52 @@ public class Booking {
 		Id = id;
 	}
 
-	public Date getServiceDate() {
-		return serviceDate;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setServiceDate(Date serviceDate) {
-		this.serviceDate = serviceDate;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getServiceTime() {
-		return serviceTime;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setServiceTime(String serviceTime) {
-		this.serviceTime = serviceTime;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public Date getBookingDate() {
-		return bookingDate;
+	public long getMobile() {
+		return mobile;
 	}
 
-	public void setBookingDate(Date bookingDate) {
-		this.bookingDate = bookingDate;
+	public void setMobile(long mobile) {
+		this.mobile = mobile;
 	}
 
-	public boolean isBookingStatus() {
-		return bookingStatus;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setBookingStatus(boolean bookingStatus) {
-		this.bookingStatus = bookingStatus;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public double getDiscount() {
-		return discount;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setDiscount(double discount) {
-		this.discount = discount;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public double getTotalAmount() {
-		return totalAmount;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public String getAddress() {
@@ -145,48 +111,30 @@ public class Booking {
 		this.address = address;
 	}
 
-	public long getServicecontactNo() {
-		return servicecontactNo;
+	public Customer(int id, String firstName, String lastName, long mobile, String userName, String password,
+			String emailId, String address) {
+		super();
+		Id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.mobile = mobile;
+		this.userName = userName;
+		this.password = password;
+		this.emailId = emailId;
+		this.address = address;
 	}
 
-	public void setServicecontactNo(long servicecontactNo) {
-		this.servicecontactNo = servicecontactNo;
-	}
-
-	public ServiceProvider getProviderId() {
-		return providerId;
-	}
-
-	public void setProviderId(ServiceProvider providerId) {
-		this.providerId = providerId;
-	}
-
-	public Customer getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(Customer customerId) {
-		this.customerId = customerId;
-	}
-
-	public ServiceInfo getServiceId() {
-		return serviceId;
-	}
-
-	public void setServiceId(ServiceInfo serviceId) {
-		this.serviceId = serviceId;
+	public Customer() {
+		super();
 	}
 
 	@Override
 	public String toString() {
-		return "Booking [Id=" + Id + ", serviceDate=" + serviceDate + ", serviceTime=" + serviceTime + ", bookingDate="
-				+ bookingDate + ", bookingStatus=" + bookingStatus + ", discount=" + discount + ", totalAmount="
-				+ totalAmount + ", address=" + address + ", servicecontactNo=" + servicecontactNo + ", providerId="
-				+ providerId + ", customerId=" + customerId + ", serviceId=" + serviceId + "]";
+		return "Customer [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", mobile=" + mobile
+				+ ", userName=" + userName + ", password=" + password + ", emailId=" + emailId + ", address=" + address
+				+ "]";
 	}
 	
-	
-
 	
 	
 }
