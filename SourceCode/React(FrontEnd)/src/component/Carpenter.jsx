@@ -3,6 +3,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import React from "react";
 import { Button } from "react-bootstrap";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 
 function CarpenterPage() {
   return (
@@ -12,7 +20,6 @@ function CarpenterPage() {
       <Row>
         <Col xs={12} md={8}>
           <h1>Carpenters</h1>
-          Rating : 4.6 (74)
         </Col>
         <Col xs={6} md={4}>
           <h1>Six Star Services </h1>
@@ -48,91 +55,91 @@ function CarpenterPage() {
         <Col>
           <br />
           <br />
-          <br /> <h1>Frequently Booked</h1>
+          <br /> <h1>Service Providers</h1>
           <br />
           <b>
-            Drill and Hang (wall decor)<br></br>
+            Raju Mishraji<br></br>
           </b>
           <b>
-            Rs 129 <br /> Time: 30 Mins
+            Rs 499 <br /> Experience : 5years
           </b>
           <br />
-          <Button variant="primary" size="sm" type="submit" href="todo">
+          <Button variant="primary" size="sm" type="submit" href="./bookslot">
             Book Now
           </Button>{" "}
-          <br />
+          {/* <br />
           Installation of one wall decor item <br />
-          <a href="todo">View Details</a>
+          <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Major Door Repair (wall decor)<br></br>
+            Rahul Sharmaji<br></br>
           </b>
           <b>
-            Rs 299 <br /> Time: 30 Mins
+            Rs 599 <br /> Experience : 7years
           </b>
           <br />
-          <Button variant="primary" size="sm" type="submit" href="todo">
+          <Button variant="primary" size="sm" type="submit" href="./bookslot">
             Book Now
           </Button>{" "}
-          <br />
-          <a href="todo">View Details</a>
+          {/* <br />
+          <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Cupborad hinge service(upto two)<br></br>
+            mayur Verma<br></br>
           </b>
           <b>
-            Rs 179 <br /> Time: 30 Mins
+            Rs 399 <br /> Experience : 3years
           </b>
           <br />
-          <Button variant="primary" size="sm" type="submit" href="todo">
+          <Button variant="primary" size="sm" type="submit" href="./bookslot">
             Book Now
           </Button>{" "}
-          <br />
+          {/* <br />
           Installation/ Replacement/repair of two cupborad hinges <br />
-          <a href="todo">View Details</a>
+          <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Curtain rod Installation(two bracket)<br></br>
+            Bajirao Salunkhe<br></br>
           </b>
           <b>
-            Rs 199 <br /> Time: 30 Mins
+            Rs 449 <br /> Experience : 6 years
           </b>
           <br />
-          <Button variant="primary" size="sm" type="submit" href="todo">
+          <Button variant="primary" size="sm" type="submit" href="./bookslot">
             Book Now
           </Button>{" "}
-          <br />
+          {/* <br />
           Installation of 1 curtain rod with 2 brackets <br />
-          <a href="todo">View Details</a>
+          <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Ceiling-mounted hanger installation <br></br>
+            Govind Meshram <br></br>
           </b>
           <b>
-            Rs 550 <br /> Time:1hr:30 Mins
+            Rs 550 <br /> Experience : 15years
           </b>
           <br />
-          <Button variant="primary" size="sm" type="submit" href="todo">
+          <Button variant="primary" size="sm" type="submit" href="./bookslot">
             Book Now
           </Button>{" "}
-          <br />
+          {/* <br />
           Installation of one clothes' hanger <br></br>
-          <a href="todo">View Details</a>
+          <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Bed Support Repair<br></br>
+            Varun Mishra<br></br>
           </b>
           <b>
-            Rs 459 <br /> Time: 60 Mins
+            Rs 459 <br /> Experience : 5years
           </b>
           <br />
-          <Button variant="primary" size="sm" type="submit" href="todo">
+          <Button variant="primary" size="sm" type="submit" href="./bookslot">
             Book Now
           </Button>{" "}
-          <br />
+          {/* <br />
           Repair of bed mattress support(any kind of bed) <br></br>
-          <a href="todo">View Details</a>
-          <hr />
+          <a href="./bookslot">View Details</a>
+          <hr /> */}
         </Col>
         <Col xs={6}></Col>
       </Row>
