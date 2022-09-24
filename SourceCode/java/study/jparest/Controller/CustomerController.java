@@ -1,8 +1,7 @@
 package study.jparest.controller;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,102 +10,66 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import study.jparest.Entity.Customer;
+import study.jparest.Entity.ServiceProvider;
+import study.jparest.repository.CustomerRepository;
+import study.jparest.repository.ServiceProviderRepository;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import study.jparest.Entity.ServiceProvider;
-import study.jparest.repository.ServiceProviderRepository;
-import study.jparest.services.ServiceProviderServices;
-
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/cws")
-public class ServiceProviderController {
+@RequestMapping("/cws1")
+public class CustomerController {
 	
 	@Autowired
-	ServiceProviderRepository ser;
+	CustomerRepository cus;
 	
-	@GetMapping("/getAll")
-	public List<ServiceProvider> getAllServiceProviders()
+	@GetMapping("/getAllCustomers")
+	public List<Customer> getAllServiceProviders()
 	{
-		return ser.findAll();
-	}
-	
-	@GetMapping("/getElectricians/{role}")
-	public List<ServiceProvider> getElectricians(@PathVariable String role)
-	{
-		return ser.findByRole(role);
+		return cus.findAll();
 	}
 
-	  @PostMapping("/register") 
-	  public String register(@RequestBody ServiceProvider sp1)
+	@PostMapping("/registerCustomer")
+	public String register(@RequestBody Customer c)
+	{
+		Customer c1 = new Customer(c.getId(),c.getFirstName(),c.getLastName(),c.getMobile(),c.getEmailId(),c.getUserName(),c.getPassword(),c.getAddress());
+		cus.save(c1);
+		return "customer inserted";
+	}
+	
+	@PostMapping("/login/{userName}/{password}")
+	  public String Login(@PathVariable String userName, @PathVariable String password)
 	  {
-		  ServiceProvider sp = new ServiceProvider(sp1.getId(),sp1.getFirstName(),sp1.getLastName(),sp1.
-	  getMobile(),sp1.getUserName(),sp1.getPassword(),sp1.getEmailId(),sp1.getCity(
-	  ),sp1.getRole(),sp1.isVerified());
-		  ser.save(sp); 
-		  return "inserted";
-	 }
-	  
-	  @PostMapping("/login/{eid}/{pwd}")
-	  public ServiceProvider Login(@PathVariable String eid, @PathVariable String pwd)
-	  {
-		ServiceProvider sp1 = ser.checkLogin(eid,pwd);
+		Customer sp1 = cus.checkLogin(userName,password);
 		if(sp1!= null)
 		{
-			return sp1;
+			return "pass";
 		}
-		return null;	  
+		return "fail";	  
 	  }
-	  
-	  
-	  @PutMapping("/changePass/{email}/{oldpwd}/{newpwd}")
+	
+	 @PutMapping("/changePass/{email}/{oldpwd}/{newpwd}")
 	  public String changePassword(@PathVariable String email,@PathVariable String oldpwd,@PathVariable String newpwd)
 		{	
-			ServiceProvider u= ser.findByEmailId(email);	
+			Customer u= cus.findByEmailId(email);	
 			if(u!=null)
 			{
 				if(u.getPassword().equals(oldpwd))
 				{
 					u.setPassword(newpwd);
 					System.out.println(u.getFirstName());
-					ser.save(u);
+					cus.save(u);
 					return "Password changed";
 				}
 			}	
-			 return "Incorrect Credentials";		
+			return "Incorrect Credentials";		
 		}
 	  
-	  
-	  @PutMapping("/update/{id}/{isVerified}")
-	  public String updateVerification(@PathVariable int id , @PathVariable boolean isVerified)
-	  {
-		  List<ServiceProvider> list= ser.findAll(); 
-			for(ServiceProvider service : list) 
-			{
-				if(service.getId()==id)
-				{ 
-					service.setVerified(isVerified);
-				}
-			}
-			ser.saveAll(list);
-			return "changes successfull :) "; 	  
-	  }
-	  
-	  @DeleteMapping("/delete/{id}")
-	  public String deletebyId(@PathVariable int id)
-	  {
-			ser.deleteById(id);
-			return "deleted";
-	  }  
-	  
-	/*	@PostMapping("/login/{email}/{pwd}")
-		public ServiceProvider checkLogin(@PathVariable String email,@PathVariable String pwd)
-		{
-			return ser.checkLoginCustomer(email, pwd);
-		} */
+	 @DeleteMapping("/delete/{id}")
+     public String deleteCustomer(@PathVariable int id)
+     {
+		  cus.deleteById(id);
+		  return "Deleted Customer";
+     }	
 }
-
-
-
-
-
-
