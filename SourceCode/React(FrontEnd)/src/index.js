@@ -4,8 +4,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import $ from 'jquery';
-import Popper from 'popper.js';
+//import $ from 'jquery';
+//import Popper from 'popper.js';
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
