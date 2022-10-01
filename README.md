@@ -36,4 +36,4 @@
 <img height="40" src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-plain.svg">
 </p>
  <hr/>
- <hr>
+ 
