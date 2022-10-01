@@ -14,11 +14,11 @@
 
 <p>
 1.Clone the repository or download the zip file of a project.<br/>
-2.Open the Construction-Worker-Services folder having subfolders sourcecode and React(Frontend).<br/>
+2.Open the Construction-Worker-Services folder having subfolders sourcecode.<br/>
 3.Open that Construction-Worker-Services spring project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml <br/>
 4.Create database in your MySql.<br/>
 5.Run springbootapplication.<br/>
-6.Open react pages folder in VScode<br/>
+6.Open React(Frontend) folder in VScode<br/>
 7.Run command "npm start" on terminal.<br/>
 8.Project will start on port 3000<br/>
 9.Explore and Enjoyyy!!!<br/>
