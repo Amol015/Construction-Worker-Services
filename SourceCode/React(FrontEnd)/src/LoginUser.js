@@ -93,10 +93,11 @@
 
 
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import Login from './login'
-import SignUp from './signupUser'
+import Login from './login';
+import CustomerLogin from './component/AuthenticateService';
+import SignUp from './signupUser';
 import {
     MDBBtn,
     MDBContainer,
@@ -112,6 +113,7 @@ import {
 export default function LoginCustomer() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8080/cws1/login/' + username + "/" + password, {}).
@@ -119,14 +121,16 @@ export default function LoginCustomer() {
                 console.log(response.data)
                 if (response.data === "pass") {
                     alert("login success");
+
+                    navigate("/servicepage")
+
+                    //  CustomerLogin(username);
                 }
                 else {
                     alert("Login fail");
                 }
-            }).
-            catch((error) => {
-                console.log("Incorrect Credentials")
             })
+
     }
     return (
         <MDBContainer className="my-5">

@@ -36,7 +36,12 @@ export default function Navbar() {
         </li>
         <li>
           <a href="./login">
-            <b>Login/Signup</b>
+            <b>Login As Customer</b>
+          </a>
+        </li>
+        <li>
+          <a href="./login">
+            <b>Login As ServiceProvider</b>
           </a>
         </li>
       </ul>

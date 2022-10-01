@@ -7,7 +7,7 @@ import featureimage3 from "../images/feature_4.png";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
-export default function Feature() {
+export default function Features() {
   const navigate = useNavigate();
   return (
     <div id="features">

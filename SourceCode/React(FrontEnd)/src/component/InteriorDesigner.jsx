@@ -12,14 +12,14 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-function ElectricianPage() {
+function InteriorPage() {
   return (
     // <Navbar></Navbar>
     <Container style={{ backgroundColor: "white" }}>
       {/* Stack the columns on mobile by making one full-width and the other half-width */}
       <Row>
         <Col xs={12} md={8}>
-          <h1>Electrician</h1>
+          <h1>Interior</h1>
         </Col>
         <Col xs={6} md={4}>
           <h1>Six Star Services </h1>
@@ -43,7 +43,7 @@ function ElectricianPage() {
             Raju Mishraji<br></br>
           </b>
           <b>
-            Rs 499 <br /> Experience : 5years
+            Rs 499 <br /> Experience : 4years
           </b>
           <br />
           <Button variant="primary" size="sm" type="submit" href="./bookslot">
@@ -54,7 +54,7 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Radhe Shyam<br></br>
+            Rahul Sharmaji<br></br>
           </b>
           <b>
             Rs 599 <br /> Experience : 7years
@@ -67,7 +67,7 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Sandeep sahu<br></br>
+            mayur Verma<br></br>
           </b>
           <b>
             Rs 399 <br /> Experience : 3years
@@ -81,7 +81,7 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Ramesh <br></br>
+            Ramesh hira<br></br>
           </b>
           <b>
             Rs 449 <br /> Experience : 6 years
@@ -95,7 +95,7 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Ankit <br></br>
+            Govind Meshram <br></br>
           </b>
           <b>
             Rs 550 <br /> Experience : 15years
@@ -129,4 +129,4 @@ function ElectricianPage() {
   );
 }
 
-export default ElectricianPage;
+export default InteriorPage;

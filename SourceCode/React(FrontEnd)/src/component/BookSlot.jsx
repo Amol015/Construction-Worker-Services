@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 
 import ReactDOM from "react-dom";
 import {
@@ -22,6 +22,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./styles.css";
 
 function BookSlot() {
+  const [address, setAddress] = useState("");
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
@@ -39,6 +40,7 @@ function BookSlot() {
                 booked: true,
                 contactName: state.contactName,
                 contactPhone: state.contactPhone,
+                // address:state.address,
               };
             }),
           };
@@ -226,11 +228,11 @@ function BookSlot() {
                 <Label for="contactName">Enter Your Address</Label>
                 <Input
                   type="text"
-                  name="contactName"
-                  id="contactName"
+                  name="address"
+                  id="address"
                   placeholder="Enter your Address"
-                  onChange={onFormFieldChange}
-                  value={contactName}
+                  onChange={(e) => setAddress(e.target.value)}
+                  value={address}
                 />
               </FormGroup>
               <Button

@@ -1,6 +1,7 @@
 import React from "react";
-import Feature from "./Feature";
 import Navbar from "../component/Navbar";
+import Contact from "./Contact";
+import Feature from "./Feature";
 
 function ServicePage() {
   return (
@@ -8,6 +9,7 @@ function ServicePage() {
       {" "}
       <Navbar></Navbar>
       <Feature></Feature>
+      <Contact></Contact>
     </div>
   );
 }

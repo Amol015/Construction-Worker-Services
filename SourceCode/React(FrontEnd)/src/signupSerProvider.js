@@ -85,7 +85,7 @@ function SignUpSP() {
 
                     <MDBCol md='6'>
                         <form>
-                            <h3>Register</h3>
+                            <h3>Register As Service Provider</h3>
 
                             <div className="form-group">
                                 <label>First name</label>
@@ -121,9 +121,14 @@ function SignUpSP() {
                                 <input type="text" className="form-control" placeholder="Enter City" name='city' onChange={handleChange} />
                             </div>
 
+                            <div className="form-group">
+                                <label>Role </label>
+                                <input type="text" className="form-control" placeholder="Enter Role" name='role' onChange={handleChange} />
+                            </div>
+
                             <button type="submit" onClick={handleClick} className="btn btn-dark btn-lg btn-block">Register</button>
                             <p className="forgot-password text-right">
-                                Already registered <a href="#">log in?</a>
+                                Already registered <a href="./login">log in?</a>
                             </p>
                         </form>
                     </MDBCol>

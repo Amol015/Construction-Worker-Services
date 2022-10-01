@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function FeatureBox(props) {
   return (
@@ -10,9 +11,12 @@ export default function FeatureBox(props) {
       <div className="s-b-text">
         <h2> {props.title} </h2>
         <p>{props.description}</p>
-        <Button variant="primary" size="sm" type="submit" href="./login">
-          Book Now
-        </Button>{" "}
+
+        <Link to={`/${props.url}`}>
+          <Button variant="primary" size="sm" type="submit">
+            Book Now
+          </Button>{" "}
+        </Link>
       </div>
     </div>
   );

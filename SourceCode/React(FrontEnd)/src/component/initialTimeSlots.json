@@ -1,0 +1,38 @@
+[
+  {
+    "id": 0,
+    "startTime": "10:00 A.M.",
+    "endTime": "12:00 P.M.",
+    "booked": false,
+    "contactName": null,
+    "contactPhone": null,
+    "slot": "Morning"
+  },
+  {
+    "id": 1,
+    "startTime": "12:00 P.M.",
+    "endTime": "02:00 P.M.",
+    "booked": true,
+    "contactName": null,
+    "contactPhone": null,
+    "slot": "Afternoon"
+  },
+  {
+    "id": 2,
+    "startTime": "04:00 P.M.",
+    "endTime": "06:00 P.M.",
+    "booked": false,
+    "contactName": null,
+    "contactPhone": null,
+    "slot": "Evening"
+  },
+  {
+    "id": 3,
+    "startTime": "07:00 P.M.",
+    "endTime": "09:00 P.M.",
+    "booked": false,
+    "contactName": null,
+    "contactPhone": null,
+    "slot": "Night"
+  }
+]

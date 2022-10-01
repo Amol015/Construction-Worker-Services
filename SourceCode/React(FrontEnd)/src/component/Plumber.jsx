@@ -12,14 +12,14 @@ import {
   useNavigate,
 } from "react-router-dom";
 
-function ElectricianPage() {
+function PlumberPage() {
   return (
     // <Navbar></Navbar>
     <Container style={{ backgroundColor: "white" }}>
       {/* Stack the columns on mobile by making one full-width and the other half-width */}
       <Row>
         <Col xs={12} md={8}>
-          <h1>Electrician</h1>
+          <h1>Plumber</h1>
         </Col>
         <Col xs={6} md={4}>
           <h1>Six Star Services </h1>
@@ -30,9 +30,25 @@ function ElectricianPage() {
       </Row>
 
       {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
+      {/* <Row>
+        <Col xs={4} md={4}>
+          <h6 style={{ textAlign: "inherit" }}> Fittings </h6>
+          <br />
+          <img src="./images/Fitting.png" alt="Fitting" />
+        </Col>
+        <Col xs={2} md={2}>
+          <h6>Leak Repairs</h6>
+          <img src="./images/LeakRepair.png"></img>
+        </Col>
+        <Col xs={6} md={4}>
+          Pipe Repair and Replacement
+          <img src="./images/PipeRepair.png"></img>
+        </Col>
+      </Row>
 
       {/* Columns are always 50% wide, on mobile and desktop */}
       <Row>
+        {" "}
         {/* <Col xs={6}> */}
         <Col>
           <br />
@@ -40,10 +56,10 @@ function ElectricianPage() {
           <br /> <h1>Service Providers</h1>
           <br />
           <b>
-            Raju Mishraji<br></br>
+            Rahul <br></br>
           </b>
           <b>
-            Rs 499 <br /> Experience : 5years
+            Rs 700 <br /> Experience : 8years
           </b>
           <br />
           <Button variant="primary" size="sm" type="submit" href="./bookslot">
@@ -54,10 +70,10 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Radhe Shyam<br></br>
+            Abhishek <br></br>
           </b>
           <b>
-            Rs 599 <br /> Experience : 7years
+            Rs 499 <br /> Experience : 3years
           </b>
           <br />
           <Button variant="primary" size="sm" type="submit" href="./bookslot">
@@ -67,10 +83,10 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Sandeep sahu<br></br>
+            Mukesh <br></br>
           </b>
           <b>
-            Rs 399 <br /> Experience : 3years
+            Rs 599 <br /> Experience : 5years
           </b>
           <br />
           <Button variant="primary" size="sm" type="submit" href="./bookslot">
@@ -81,10 +97,10 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Ramesh <br></br>
+            Abhinav <br></br>
           </b>
           <b>
-            Rs 449 <br /> Experience : 6 years
+            Rs 999 <br /> Experience : 10 years
           </b>
           <br />
           <Button variant="primary" size="sm" type="submit" href="./bookslot">
@@ -95,10 +111,10 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Ankit <br></br>
+            Govind <br></br>
           </b>
           <b>
-            Rs 550 <br /> Experience : 15years
+            Rs 499 <br /> Experience : 3 years
           </b>
           <br />
           <Button variant="primary" size="sm" type="submit" href="./bookslot">
@@ -109,10 +125,10 @@ function ElectricianPage() {
           <a href="./bookslot">View Details</a> */}
           <hr />
           <b>
-            Varun Mishra<br></br>
+            Varun <br></br>
           </b>
           <b>
-            Rs 459 <br /> Experience : 5years
+            Rs 599 <br /> Experience : 5years
           </b>
           <br />
           <Button variant="primary" size="sm" type="submit" href="./bookslot">
@@ -120,7 +136,7 @@ function ElectricianPage() {
           </Button>{" "}
           {/* <br />
           Repair of bed mattress support(any kind of bed) <br></br>
-          <a href="./bookslot">View Details</a>
+<a href="./bookslot">View Details</a>
           <hr /> */}
         </Col>
         <Col xs={6}></Col>
@@ -129,4 +145,4 @@ function ElectricianPage() {
   );
 }
 
-export default ElectricianPage;
+export default PlumberPage;

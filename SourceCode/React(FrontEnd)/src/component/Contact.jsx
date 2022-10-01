@@ -18,10 +18,10 @@ export default function Contact() {
         <li>
           <a
             target="_blank"
-            href="https://wa.me/917741884882?text=I am Interested in the Services"
+            href="https://wa.me/917397890525?text=I am Interested in the Services "
             className="border-btn2 border-btn4"
           >
-            click to watsaap
+            click to whatsapp
           </a>
         </li>
       </ul>
