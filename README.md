@@ -15,7 +15,7 @@
 <p>
 1.Clone the repository or download the zip file of a project.<br/>
 2.Open the Construction-Worker-Services folder having subfolders sourcecode and React(Frontend).<br/>
-3.open that Construction-Worker_Services spring project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml <br/>
+3.open that Construction-Worker-Services spring project in your STS and change necessary details of your MySql in applicationproperties and hibernate.cfg.xml <br/>
 4.Create database in your MySql.<br/>
 5.Run springbootapplication.<br/>
 6.Open react pages folder in VScode<br/>
