@@ -1,6 +1,6 @@
 <h1 align="center"> Construction Worker Services </h1>
 <p align="center">
-<img height="300" width="300"  src="https://github.com/Amol015/Construction-Worker-Services/blob/main/Images/Home/Homepage.jpg">
+<img height="300" width="300"  src="https://github.com/Amol015/Construction-Worker-Services/blob/main/SourceCode/React(FrontEnd)/Images/Home/Homepage.jpg">
 </p>
 <br/>
 <br/>
